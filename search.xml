@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>使用Fofa确定网站真实IP地址的小技巧</title>
+      <link href="/2022/01/19/shi-yong-fofa-que-ding-wang-zhan-zhen-shi-ip-di-zhi-de-xiao-ji-qiao/"/>
+      <url>/2022/01/19/shi-yong-fofa-que-ding-wang-zhan-zhen-shi-ip-di-zhi-de-xiao-ji-qiao/</url>
+      
+        <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>我们想确定一个网站的真实IP地址，通常现在网站都会使用https协议，用到SSL证书是必不可少的，绝大多数企业证书都是通配符证书，因此我们可以把证书的序列号拿下来然后搜索这个证书用在了哪些业务里，然后如果部分业务中没有使用CDN或者没有覆盖到CDN，源IP地址就显示出来了！</p><h2 id="Fofa"><a href="#Fofa" class="headerlink" title="Fofa"></a>Fofa</h2><p><a href="https://fofa.so/">https://fofa.so/</a></p><h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><p>以<a href="https://www.zhihu.com/signin?next=/">知乎</a>网站为例，我们先访问网站，然后按F12打开<code>开发者工具</code>，点击<code>Security</code></p><p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191810197.png" alt="image-20220119181014309"></p><p>点击<code>View certificate</code>，查看证书详情</p><p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191811564.png" alt="image-20220119181100340"></p><p>这里有<code>详细信息</code>，其中我们可以看到<code>序列号</code></p><p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191812758.png" alt="image-20220119181239327"></p><pre class="line-numbers language-none"><code class="language-none">08FD71FF37DEFF955767502270961AE6<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>然后，我们使用<a href="https://tool.lu/hexconvert/">在线转换工具</a>，将16进制的序列号转换为10进制</p><pre class="line-numbers language-none"><code class="language-none">14516903431790578896883864801849922917<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191820420.png" alt="image-20220119182038459"></p><p>这时候Fofa的作用就来了，我们可以通过下面的语句来进行调查</p><pre class="line-numbers language-none"><code class="language-none">cert&#x3D;&quot;11949787204246556179857180358287432422&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201191821509.png" alt="image-20220119182112934"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> FOFA 真实IP定位 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Frp内网穿透把MSF拖入内网</title>
       <link href="/2022/01/19/frp-nei-wang-chuan-tou-ba-msf-tuo-ru-nei-wang/"/>
       <url>/2022/01/19/frp-nei-wang-chuan-tou-ba-msf-tuo-ru-nei-wang/</url>
