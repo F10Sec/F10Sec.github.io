@@ -6,7 +6,7 @@
   <link href="https://f10sec.github.io/atom.xml" rel="self"/>
   
   <link href="https://f10sec.github.io/"/>
-  <updated>2022-01-19T10:22:26.907Z</updated>
+  <updated>2022-01-20T08:18:13.846Z</updated>
   <id>https://f10sec.github.io/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>靶场学习记录</title>
+    <link href="https://f10sec.github.io/2022/01/20/ba-chang-xue-xi-ji-lu/"/>
+    <id>https://f10sec.github.io/2022/01/20/ba-chang-xue-xi-ji-lu/</id>
+    <published>2022-01-20T08:18:13.000Z</published>
+    <updated>2022-01-20T08:18:13.846Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>使用Fofa确定网站真实IP地址的小技巧</title>
@@ -129,6 +142,29 @@
     
     
     <category term="Fastjson" scheme="https://f10sec.github.io/tags/Fastjson/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://f10sec.github.io/2021/12/01/sqli-labs-ba-chang-xue-xi-ji-lu/"/>
+    <id>https://f10sec.github.io/2021/12/01/sqli-labs-ba-chang-xue-xi-ji-lu/</id>
+    <published>2021-12-01T07:49:50.828Z</published>
+    <updated>2022-01-20T08:19:46.130Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;title: SQLI-labs靶场学习记录
+date: 2022-01-20 16:18:22
+tags:SQLI-labs 靶场&lt;span</summary>
+        
+      
+    
+    
+    
     
   </entry>
   
