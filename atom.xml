@@ -6,7 +6,7 @@
   <link href="https://f10sec.github.io/atom.xml" rel="self"/>
   
   <link href="https://f10sec.github.io/"/>
-  <updated>2022-01-20T08:18:13.846Z</updated>
+  <updated>2022-01-20T08:25:28.455Z</updated>
   <id>https://f10sec.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQLI-labs靶场学习记录</title>
+    <link href="https://f10sec.github.io/2022/01/20/sqli-labs-ba-chang-xue-xi-ji-lu/"/>
+    <id>https://f10sec.github.io/2022/01/20/sqli-labs-ba-chang-xue-xi-ji-lu/</id>
+    <published>2022-01-20T08:22:42.000Z</published>
+    <updated>2022-01-20T08:25:28.455Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;备注：转载至国光大佬的笔记；&lt;/p&gt;
+&lt;p&gt;SQLi Labs 是一个比较全面的手工注入练习靶场，因为很全面，很少有人可以坚持做完，建议坚持打一遍秉做好笔记；&lt;/p&gt;
+&lt;h1 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="SQLI-labs 靶场学习" scheme="https://f10sec.github.io/tags/SQLI-labs-%E9%9D%B6%E5%9C%BA%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>靶场学习记录</title>
@@ -142,29 +167,6 @@
     
     
     <category term="Fastjson" scheme="https://f10sec.github.io/tags/Fastjson/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://f10sec.github.io/2021/12/01/sqli-labs-ba-chang-xue-xi-ji-lu/"/>
-    <id>https://f10sec.github.io/2021/12/01/sqli-labs-ba-chang-xue-xi-ji-lu/</id>
-    <published>2021-12-01T07:49:50.828Z</published>
-    <updated>2022-01-20T08:19:46.130Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;title: SQLI-labs靶场学习记录
-date: 2022-01-20 16:18:22
-tags:SQLI-labs 靶场&lt;span</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
