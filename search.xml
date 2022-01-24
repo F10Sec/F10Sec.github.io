@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>MAC升级Nodejs和Npm到最新版</title>
+      <link href="/2022/01/24/mac-sheng-ji-nodejs-he-npm-dao-zui-xin-ban/"/>
+      <url>/2022/01/24/mac-sheng-ji-nodejs-he-npm-dao-zui-xin-ban/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>第一步，先查看本机node.js版本：</p></blockquote><pre class="line-numbers language-none"><code class="language-none">node -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p>第二步，清除node.js的cache：</p></blockquote><pre class="line-numbers language-none"><code class="language-none">sudo npm cache clean -f<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p>第三步，安装 n 工具，这个工具是专门用来管理node.js版本的，别怀疑这个工具的名字，是他是他就是他，他的名字就是 “n”</p></blockquote><pre class="line-numbers language-none"><code class="language-none">sudo npm install -g n<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p>第四步，安装最新版本的node.js</p></blockquote><pre class="line-numbers language-none"><code class="language-none">sudo n stable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p>第五步，再次查看本机的node.js版本：</p></blockquote><pre class="line-numbers language-none"><code class="language-none">node -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p>第六步，更新npm到最新版：</p></blockquote><pre class="line-numbers language-none"><code class="language-none">$ sudo npm install npm@latest -g<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p>第七步，验证</p></blockquote><pre class="line-numbers language-crmsh" data-language="crmsh"><code class="language-crmsh">1、node -v2、npm -v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Nodejs  Npm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SQLI-labs靶场学习记录</title>
       <link href="/2022/01/20/sqli-labs-ba-chang-xue-xi-ji-lu/"/>
       <url>/2022/01/20/sqli-labs-ba-chang-xue-xi-ji-lu/</url>

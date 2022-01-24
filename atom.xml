@@ -6,7 +6,7 @@
   <link href="https://f10sec.github.io/atom.xml" rel="self"/>
   
   <link href="https://f10sec.github.io/"/>
-  <updated>2022-01-20T08:25:28.455Z</updated>
+  <updated>2022-01-24T06:25:03.797Z</updated>
   <id>https://f10sec.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MAC升级Nodejs和Npm到最新版</title>
+    <link href="https://f10sec.github.io/2022/01/24/mac-sheng-ji-nodejs-he-npm-dao-zui-xin-ban/"/>
+    <id>https://f10sec.github.io/2022/01/24/mac-sheng-ji-nodejs-he-npm-dao-zui-xin-ban/</id>
+    <published>2022-01-24T06:24:11.000Z</published>
+    <updated>2022-01-24T06:25:03.797Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;第一步，先查看本机node.js版本：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;node -v&lt;span</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Nodejs  Npm" scheme="https://f10sec.github.io/tags/Nodejs-Npm/"/>
+    
+  </entry>
   
   <entry>
     <title>SQLI-labs靶场学习记录</title>
