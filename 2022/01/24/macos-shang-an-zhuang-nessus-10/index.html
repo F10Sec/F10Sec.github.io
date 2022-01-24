@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="友情链接, JAVA、Web安全、代码审计、免杀">
+    <meta name="keywords" content="macOS上安装Nessus-10, JAVA、Web安全、代码审计、免杀">
     <meta name="description" content="逆风的方向更适合飞翔">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>友情链接 | F10Sec</title>
+    <title>macOS上安装Nessus-10 | F10Sec</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/libs/awesome/css/all.css">
@@ -384,12 +384,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">友情链接</h1>
+                    <h1 class="description center-align post-title">macOS上安装Nessus-10</h1>
                 </div>
             </div>
         </div>
@@ -503,9 +503,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Nessus%E5%AE%89%E8%A3%85/">
+                                <span class="chip bg-color">Nessus安装</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -517,28 +521,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-19
+                    2022-01-24
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-19
+                    2022-01-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    784
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -566,7 +570,95 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <pre class="line-numbers language-none"><code class="language-none">备注：
+转载至大佬博客，
+大佬博客地址：https:&#x2F;&#x2F;sysin.org&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h3><p>下载最新版本的插件：</p>
+<ul>
+<li><p>官网下载（需要许可）：<a target="_blank" rel="noopener" href="https://plugins.nessus.org/v2/offline.php">Nessus offline Page</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.tenable.com/products/nessus/nessus-essentials">注册获得免费许可 Nessus® Essentials（原名 Nessus Home）</a>，只需要姓名和邮件地址，会收到激活码，然后访问上述页面可以免费下载插件。</p>
+</li>
+</ul>
+<h2 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h2><p>下载的 dmg 文件打开后是一个 pkg 安装包，双击直接下一步即可。</p>
+<p>也可以使用命令完成安装：</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo hdiutil attach Nessus-&lt;Nessus_Version&gt;.dmg
+sudo installer -package &#x2F;Volumes&#x2F;Nessus\ Install&#x2F;Install\ Nessus.pkg -target &#x2F;
+sudo hdiutil detach &#x2F;Volumes&#x2F;Nessus\ Install<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="3-初始化登录"><a href="#3-初始化登录" class="headerlink" title="3. 初始化登录"></a>3. 初始化登录</h2><p>（1）启动服务</p>
+<p>默认已经启动并且自动启动，在 “ -&gt; 系统偏好设置…” 中点击 Nessus 图标，可以停止和启动服务以及设置是否自动启动。</p>
+<p>或者使用以下命令：</p>
+<ul>
+<li>启动服务：<code>sudo launchctl load -w /Library/LaunchDaemons/com.tenablesecurity.nessusd.plist</code></li>
+<li>停止服务：<code>sudo launchctl unload -w /Library/LaunchDaemons/com.tenablesecurity.nessusd.plist</code></li>
+</ul>
+<p>（2）使用浏览器访问：<code>https://&lt;IP-or-FQDN&gt;:8834</code>，注意忽略证书警告</p>
+<p>（3）选择 “Managed Scanner”</p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201241529008.webp" alt="nessus-01"></p>
+<p>（4）选择 “Tenable.sc”</p>
+<p><img src="https://sysin.org/blog/nessus-unlimited-on-macos/nessus-02.webp" alt="nessus-02"></p>
+<p>（5）创建管理员帐号和密码</p>
+<p><img src="https://sysin.org/blog/nessus-unlimited-on-macos/nessus-03.webp" alt="nessus-03"></p>
+<p>（6）编译插件（新安装编译过程很快）</p>
+<p><img src="https://sysin.org/blog/nessus-unlimited-on-macos/nessus-04.webp" alt="nessus-04"></p>
+<p>（7）自动登录，安装成功</p>
+<p>此时只有 “Setting”（没有 “Scans”）且显示未注册。</p>
+<p><img src="https://sysin.org/blog/nessus-unlimited-on-macos/nessus-05-darwin.webp" alt="nessus-05"></p>
+<h2 id="4-安装插件和创建配置文件"><a href="#4-安装插件和创建配置文件" class="headerlink" title="4. 安装插件和创建配置文件"></a>4. 安装插件和创建配置文件</h2><blockquote>
+<p>此时下面两个配置文件都是空白的</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;Library&#x2F;Nessus&#x2F;run&#x2F;var&#x2F;nessus&#x2F;plugin_feed_info.inc
+&#x2F;Library&#x2F;Nessus&#x2F;run&#x2F;lib&#x2F;nessus&#x2F;plugins&#x2F;plugin_feed_info.inc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>（1）更新插件</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo &#x2F;Library&#x2F;Nessus&#x2F;run&#x2F;sbin&#x2F;nessuscli update all-2.0.tar.gz
+# all-2.0.tar.gz 为默认名称，请根据插件离线包的实际路径和文件名修改（SYSIN）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>（2）写入配置文件</p>
+<p>分别编辑两个 plugin_feed_info.inc 文件：</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo vi &#x2F;Library&#x2F;Nessus&#x2F;run&#x2F;var&#x2F;nessus&#x2F;plugin_feed_info.inc
+sudo vi &#x2F;Library&#x2F;Nessus&#x2F;run&#x2F;lib&#x2F;nessus&#x2F;plugins&#x2F;plugin_feed_info.inc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>都写入以下内容：</p>
+<pre class="line-numbers language-none"><code class="language-none">PLUGIN_SET &#x3D; &quot;202111052001&quot;;
+PLUGIN_FEED &#x3D; &quot;ProfessionalFeed (Direct)&quot;;
+PLUGIN_FEED_TRANSPORT &#x3D; &quot;Tenable Network Security Lightning&quot;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>上述 PLUGIN_SET 后的数字（日期）并没有严格要求，根据日期来写以便识别版本。</p>
+</blockquote>
+<h2 id="5-重启服务编译插件"><a href="#5-重启服务编译插件" class="headerlink" title="5. 重启服务编译插件"></a>5. 重启服务编译插件</h2><p>（1）停止服务</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo launchctl unload -w &#x2F;Library&#x2F;LaunchDaemons&#x2F;com.tenablesecurity.nessusd.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>（2）启动服务</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo launchctl load -w &#x2F;Library&#x2F;LaunchDaemons&#x2F;com.tenablesecurity.nessusd.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>（3）返回浏览器查看状态</p>
+<p>此时 Web 页面提示：Establishing connection, please wait…</p>
+<p>刷新一下浏览器，可以看到正在：Compiling plugins…</p>
+<blockquote>
+<p>此过程持续时间稍微有点长，应与机器性能有关。</p>
+</blockquote>
+<p><img src="https://sysin.org/blog/nessus-unlimited-on-macos/nessus-06.webp" alt="nessus-06"></p>
+<p>（4）出现登录页面</p>
+<p><img src="https://sysin.org/blog/nessus-unlimited-on-macos/nessus-07.webp" alt="nessus-07"></p>
+<p>（5）登录后自动打开 About 页面（ Settings - About）</p>
+<p>可以看到 “Licensed Hosts Unlimited” 和 “Plugin Set” 的版本。</p>
+<p><img src="https://sysin.org/blog/nessus-unlimited-on-macos/nessus-11-darwin.webp" alt="nessus-08"></p>
+<p>已经成功。</p>
+<h2 id="6-验证"><a href="#6-验证" class="headerlink" title="6. 验证"></a>6. 验证</h2><p>（1）点击 “Scans” - “My Scans”，“Create a new scan”</p>
+<p><img src="https://sysin.org/blog/nessus-unlimited-on-macos/nessus-12.webp" alt="nessus-09"></p>
+<p>（2）可以看到模板都出来了</p>
+<p><img src="https://sysin.org/blog/nessus-unlimited-on-macos/nessus-13.webp" alt="nessus-10"></p>
+<p>（3）随意点击一个模板，可以看到插件数量</p>
+<p><img src="https://sysin.org/blog/nessus-unlimited-on-macos/nessus-14.webp" alt="nessus-11"></p>
+<p>创建一个 Scan 试试吧。</p>
+<h2 id="7-如何更新插件"><a href="#7-如何更新插件" class="headerlink" title="7. 如何更新插件"></a>7. 如何更新插件</h2><p>（1）下载新版插件离线包</p>
+<p>（2）更新命令：<code>sudo /Library/Nessus/run/sbin/nessuscli update all-2.0.tar.gz</code></p>
+<p>（3）验证配置文件（修改版本日期）</p>
+<p>（4）重启服务并验证</p>
+
                 
             </div>
             <hr/>
@@ -592,7 +684,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://F10Sec.github.io/friends/index.html">https://F10Sec.github.io/friends/index.html</a>
+                    <a href="https://F10Sec.github.io/2022/01/24/macos-shang-an-zhuang-nessus-10/">https://F10Sec.github.io/2022/01/24/macos-shang-an-zhuang-nessus-10/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -629,7 +721,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/Nessus%E5%AE%89%E8%A3%85/">
+                                    <span class="chip bg-color">Nessus安装</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -698,13 +794,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/friends/index.html">
+                <a href="/2022/01/24/macos-shang-an-zhuang-nessus-10/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/9.jpg" class="responsive-img" alt="友情链接">
+                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/4.jpg" class="responsive-img" alt="macOS上安装Nessus-10">
                         
-                        <span class="card-title">友情链接</span>
+                        <span class="card-title">macOS上安装Nessus-10</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -715,7 +811,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-24
                             </span>
                         <span class="publish-author">
                             
@@ -727,22 +823,30 @@
                 </div>
 
                 
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Nessus%E5%AE%89%E8%A3%85/">
+                        <span class="chip bg-color">Nessus安装</span>
+                    </a>
+                    
+                </div>
+                
             </div>
         </div>
         
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/friends/index.html">
+                <a href="/2022/01/24/mac-sheng-ji-nodejs-he-npm-dao-zui-xin-ban/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/9.jpg" class="responsive-img" alt="友情链接">
+                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/7.jpg" class="responsive-img" alt="MAC升级Nodejs和Npm到最新版">
                         
-                        <span class="card-title">友情链接</span>
+                        <span class="card-title">MAC升级Nodejs和Npm到最新版</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -753,7 +857,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-24
                             </span>
                         <span class="publish-author">
                             
@@ -763,7 +867,14 @@
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Nodejs-Npm/">
+                        <span class="chip bg-color">Nodejs  Npm</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>

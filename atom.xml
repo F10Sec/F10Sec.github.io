@@ -6,7 +6,7 @@
   <link href="https://f10sec.github.io/atom.xml" rel="self"/>
   
   <link href="https://f10sec.github.io/"/>
-  <updated>2022-01-24T06:25:03.797Z</updated>
+  <updated>2022-01-24T07:41:20.655Z</updated>
   <id>https://f10sec.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>macOS上安装Nessus-10</title>
+    <link href="https://f10sec.github.io/2022/01/24/macos-shang-an-zhuang-nessus-10/"/>
+    <id>https://f10sec.github.io/2022/01/24/macos-shang-an-zhuang-nessus-10/</id>
+    <published>2022-01-24T07:21:51.000Z</published>
+    <updated>2022-01-24T07:41:20.655Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;备注：
+转载至大佬博客，
+大佬博客地址：https:&amp;#x2F;&amp;#x2F;sysin.org&amp;#x2F;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Nessus安装" scheme="https://f10sec.github.io/tags/Nessus%E5%AE%89%E8%A3%85/"/>
+    
+  </entry>
   
   <entry>
     <title>MAC升级Nodejs和Npm到最新版</title>
