@@ -6,7 +6,7 @@
   <link href="https://f10sec.github.io/atom.xml" rel="self"/>
   
   <link href="https://f10sec.github.io/"/>
-  <updated>2022-01-24T07:41:20.655Z</updated>
+  <updated>2022-01-26T02:08:25.378Z</updated>
   <id>https://f10sec.github.io/</id>
   
   <author>
@@ -15,6 +15,53 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ARM架构安装Kubernetes集群</title>
+    <link href="https://f10sec.github.io/2022/01/26/arm-jia-gou-an-zhuang-kubernetes-ji-qun/"/>
+    <id>https://f10sec.github.io/2022/01/26/arm-jia-gou-an-zhuang-kubernetes-ji-qun/</id>
+    <published>2022-01-26T02:04:26.000Z</published>
+    <updated>2022-01-26T02:08:25.378Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Kubernetes" scheme="https://f10sec.github.io/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Awvs14_for_mac破解方法</title>
+    <link href="https://f10sec.github.io/2022/01/24/awvs14-for-mac-po-jie-fang-fa/"/>
+    <id>https://f10sec.github.io/2022/01/24/awvs14-for-mac-po-jie-fang-fa/</id>
+    <published>2022-01-24T07:55:52.000Z</published>
+    <updated>2022-01-24T07:57:02.685Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;安装的时候找了一下，在这个路径下&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Awvs14_for_mac" scheme="https://f10sec.github.io/tags/Awvs14-for-mac/"/>
+    
+  </entry>
   
   <entry>
     <title>macOS上安装Nessus-10</title>
