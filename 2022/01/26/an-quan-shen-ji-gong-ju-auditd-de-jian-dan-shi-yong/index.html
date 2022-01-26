@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于我, JAVA、Web安全、代码审计、免杀">
+    <meta name="keywords" content="安全审计工具Auditd的简单使用, JAVA、Web安全、代码审计、免杀">
     <meta name="description" content="逆风的方向更适合飞翔">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于我 | F10Sec</title>
+    <title>安全审计工具Auditd的简单使用 | F10Sec</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/libs/awesome/css/all.css">
@@ -384,12 +384,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于我</h1>
+                    <h1 class="description center-align post-title">安全审计工具Auditd的简单使用</h1>
                 </div>
             </div>
         </div>
@@ -503,9 +503,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7-Auditd/">
+                                <span class="chip bg-color">安全审计工具 Auditd</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -517,28 +521,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-19
+                    2022-01-26
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-19
+                    2022-01-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
 
@@ -566,7 +570,147 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="auditd概述"><a href="#auditd概述" class="headerlink" title="auditd概述"></a><strong>auditd</strong>概述</h1><p>auditd是Linux审计系统的用户空间组件，它负责将审计记录写入磁盘。</p>
+<p>使用auditctl实用程序配置审核系统或加载规则。</p>
+<p>在auditd启动期间，/etc/audit/audit.rules 中的审计规则由auditctl读取并加载到内核中。</p>
+<p>审计守护进程本身 有一些配置选项可以让管理员进行自定义配置；</p>
+<pre class="line-numbers language-none"><code class="language-none">audit 主要用来记录安全信息，用于对系统安全事件的追溯，而 syslog 用来记录系统信息，如硬件警报和软件日志等。syslog 属于应用层，没办法记录太多信息，audit 用来记录内核信息，包括文件的读写，权限的改变等。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="auditd相关工具与配置文件"><a href="#auditd相关工具与配置文件" class="headerlink" title="auditd相关工具与配置文件"></a><strong>auditd相关工具与配置文件</strong></h1><pre class="line-numbers language-none"><code class="language-none">auditctl : 即时控制审计守护进程的行为的工具，比如如添加规则等等
+
+aureport : 查看和生成审计报告的工具
+
+ausearch : 查找审计事件的工具
+
+auditspd : 转发事件通知给其他应用程序，而不是写入到审计日志文件中
+
+autrace : 一个用于跟踪进程的命令
+
+&#x2F;etc&#x2F;audit&#x2F;auditd.conf : auditd工具的配置文件
+
+&#x2F;etc&#x2F;audit&#x2F;rules.d&#x2F;audit.rules：包含审核规则的文件
+
+&#x2F;etc&#x2F;audit&#x2F;audit.rules : 记录审计规则的文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="auditd的安装"><a href="#auditd的安装" class="headerlink" title="auditd的安装"></a><strong>auditd的安装</strong></h1><p>首先需要安装audit并配置：</p>
+<blockquote>
+<p>1）安装：sudo yum install audit*.* -y<br>         2）开启audit服务（守护进程auditd）：service auditd start<br>         3）查看是否开启：service auditd status（auditctl -s）</p>
+</blockquote>
+<p>开启了autid服务后，所有的审计日志会记录在/var/log/audit/audit.log文件中。</p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261624787.png" alt="image-20220126162428712"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261626870.png" alt="image-20220126162602488"></p>
+<h1 id="配置audit"><a href="#配置audit" class="headerlink" title="配置audit"></a>配置audit</h1><p>audit 安装后会生成 2 个配置文件:</p>
+<ul>
+<li>/etc/audit/auditd.conf</li>
+<li>/etc/audit/audit.rules</li>
+</ul>
+<p>/etc/audit/auditd.conf 是守护程序的默认配置文件，/etc/audit/audit.rules 是记录审计规则的文件。下面分别看下两个文件格式和配置项。</p>
+<p>【1】/etc/audit/auditd.conf</p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261626554.png" alt="image-20220126162656238"></p>
+<p>下面是centos8上截取的audit配置文件（部分）：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">#
+<span class="token macro property"><span class="token directive-hash">#</span> <span class="token expression">This file controls the configuration of the audit daemon</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span>
+<span class="token directive keyword">local</span><span class="token expression">_events <span class="token operator">=</span> yes</span></span>
+write_logs <span class="token operator">=</span> yes
+#  设置日志文件
+log_file <span class="token operator">=</span> <span class="token operator">/</span>var<span class="token operator">/</span>log<span class="token operator">/</span>audit<span class="token operator">/</span>audit<span class="token punctuation">.</span>log
+log_group <span class="token operator">=</span> root
+log_format <span class="token operator">=</span> ENRICHED
+flush <span class="token operator">=</span> INCREMENTAL_ASYNC
+freq <span class="token operator">=</span> <span class="token number">50</span>
+#  设置日志文件大小，单位是MB
+max_log_file <span class="token operator">=</span> <span class="token number">8</span>
+#  日志文件滚动的数目，如果设置为小于 <span class="token number">2</span>，则不会循环记录。没设置则位<span class="token number">0</span>，不循环日志文件
+num_logs <span class="token operator">=</span> <span class="token number">5</span>
+priority_boost <span class="token operator">=</span> <span class="token number">4</span>
+name_format <span class="token operator">=</span> NONE
+##name <span class="token operator">=</span> mydomain
+#  日志文件到达最大值后的动作，ROTATE是滚动记录
+max_log_file_action <span class="token operator">=</span> ROTATE
+… …<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>【2】/etc/audit/audit.rules</p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261628177.png" alt="image-20220126162852513"></p>
+<p>audit可以自定义对指定的文件或命令进行审计（如监视rm命令被执行、/etc/passwd文件内容被改变），只要配置好对应规则即可，配置规则可以通过命令行（auditctl 临时生效）或者编辑配置文件（audit.rules）两种方式来实现。下面是centos8上截取的audit规则文件（部分）：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">## First rule <span class="token operator">-</span> delete all
+<span class="token operator">-</span>D
+
+## Increase the buffers to survive stress events<span class="token punctuation">.</span>
+## Make this bigger <span class="token keyword">for</span> busy systems
+<span class="token operator">-</span>b <span class="token number">8192</span>
+
+## This determine how <span class="token keyword">long</span> to wait in burst of events
+<span class="token operator">--</span>backlog_wait_time <span class="token number">60000</span>
+
+## Set failure mode to syslog
+<span class="token operator">-</span>f <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其实就是把auditctl的命令直接拿过来即可，auditctl里支持的选项都可以在这个文件里指定，后面介绍auditctl命令再细看。</p>
+<h1 id="auditd的使用"><a href="#auditd的使用" class="headerlink" title="auditd的使用"></a><strong>auditd的使用</strong></h1><h2 id="1、安装auditd服务"><a href="#1、安装auditd服务" class="headerlink" title="1、安装auditd服务"></a><strong>1、安装auditd服务</strong></h2><p>CentOS7系统默认安装了audit服务；</p>
+<pre class="line-numbers language-none"><code class="language-none">rpm -aq | grep audit
+rpm -ql audit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261628447.png" alt="image-20220126162808108"></p>
+<h2 id="2、配置audit-rules规则"><a href="#2、配置audit-rules规则" class="headerlink" title="2、配置audit.rules规则"></a><strong>2、配置audit.rules规则</strong></h2><p>默认情况下审计规则是空的；</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;*查看规则*&#x2F;
+auditctl -l
+
+&#x2F;*查看命令帮助*&#x2F;
+auditctl -h<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>例如添加一条规则</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">auditctl <span class="token operator">-</span>w <span class="token operator">/</span>data <span class="token operator">-</span>p rwxa
+<span class="token comment">/*
+监控 /data目录
+-w path : 指定要监控的路径文件
+-p : 指定触发审计的文件/目录的访问权限
+rwxa ： 指定的触发条件，r 读取权限，w 写入权限，x 执行权限，a 属性（attr）*/</span>
+<span class="token operator">*</span><span class="token operator">/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261631283.png" alt="image-20220126163058837"></p>
+<p>系统原本默认的backlog_limit为8192，也就是8192个缓冲区（折合70M内存）；<br>为了稳定，增大这个数值时幅度不要太大，backlog_limit改为10240刚好，≈ 87M；</p>
+<p>auditctl -f 可以决定出发审计规则之后的动作，0是没动作，1是输出（会输出到messages中），2是混杂模式；</p>
+<pre class="line-numbers language-none"><code class="language-none">auditctl -b 10240<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="3、永久保存审计规则"><a href="#3、永久保存审计规则" class="headerlink" title="3、永久保存审计规则"></a><strong>3、永久保存审计规则</strong></h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">vim <span class="token operator">/</span>etc<span class="token operator">/</span>audit<span class="token operator">/</span>rules<span class="token punctuation">.</span>d<span class="token operator">/</span>audit<span class="token punctuation">.</span>rules
+例如将<span class="token operator">-</span>w <span class="token operator">/</span>root<span class="token operator">/</span>www<span class="token operator">/</span> <span class="token operator">-</span>p rwxa加入到最后一行
+service auditd restart
+auditctl <span class="token operator">-</span>l<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261631051.png" alt="image-20220126163153333"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261640824.png" alt="image-20220126164049082"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261641580.png" alt="image-20220126164129831"></p>
+<h2 id="4、审计效果"><a href="#4、审计效果" class="headerlink" title="4、审计效果"></a><strong>4、审计效果</strong></h2><p>在/root/www/目录下生成一个文件或者修改文件，查看审计日志</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">tail <span class="token operator">-</span>f <span class="token operator">/</span><span class="token keyword">var</span><span class="token operator">/</span>log<span class="token operator">/</span>audit<span class="token operator">/</span>audit<span class="token punctuation">.</span>log<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h2 id="5、实现将audit日志通过rsyslog转发给日志服务器"><a href="#5、实现将audit日志通过rsyslog转发给日志服务器" class="headerlink" title="5、实现将audit日志通过rsyslog转发给日志服务器"></a><strong>5、实现将audit日志通过rsyslog转发给日志服务器</strong></h2><p>1）audit有rsyslog插件能实现转发到本地的rsyslog服务</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">cd <span class="token operator">/</span>etc<span class="token operator">/</span>audisp<span class="token operator">/</span>plugins<span class="token punctuation">.</span>d<span class="token operator">/</span>
+vi syslog<span class="token punctuation">.</span>conf
+修改如下两项
+active <span class="token operator">=</span> yes
+args <span class="token operator">=</span> <span class="token constant">LOG_LOCAL0</span>
+然后重启audit服务
+service auditd restart<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261726269.png" alt="image-20220126172634009"></p>
+<p>2)audit审计日志还会输出到/var/log/message文件中</p>
+<p>如果需要禁止输出到/var/log/messages文件，可以修改rsyslog.conf配置项并重启rsyslog服务 </p>
+<p>在如下位置加入local0.none来实现不输出到/var/log/messages中</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">vi <span class="token operator">/</span>etc<span class="token operator">/</span>rsyslog<span class="token punctuation">.</span>conf
+<span class="token operator">*</span><span class="token punctuation">.</span>info<span class="token punctuation">;</span>mail<span class="token punctuation">.</span>none<span class="token punctuation">;</span>authpriv<span class="token punctuation">.</span>none<span class="token punctuation">;</span>cron<span class="token punctuation">.</span>none<span class="token punctuation">;</span>local0<span class="token punctuation">.</span>none    <span class="token operator">/</span><span class="token keyword">var</span><span class="token operator">/</span>log<span class="token operator">/</span>messages
+最后一行添加日志服务器
+<span class="token operator">*</span><span class="token punctuation">.</span><span class="token operator">*</span> @<span class="token number">192.168</span><span class="token number">.31</span><span class="token number">.51</span>
+保存退出
+service rsyslog restart<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261726085.png" alt="image-20220126172653708"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261727658.png" alt="image-20220126172710897"></p>
+<p>3)效果验证 如下图所示，审计日志只输出到日志服务器，未打印到/var/log/messages中</p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201261727168.png" alt="image-20220126172732621"></p>
+
                 
             </div>
             <hr/>
@@ -592,7 +736,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://F10Sec.github.io/about/index.html">https://F10Sec.github.io/about/index.html</a>
+                    <a href="https://F10Sec.github.io/2022/01/26/an-quan-shen-ji-gong-ju-auditd-de-jian-dan-shi-yong/">https://F10Sec.github.io/2022/01/26/an-quan-shen-ji-gong-ju-auditd-de-jian-dan-shi-yong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -629,7 +773,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7-Auditd/">
+                                    <span class="chip bg-color">安全审计工具 Auditd</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -671,18 +819,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/about/index.html">
+                <a href="/2022/01/26/xun-zhao-cheng-xu-lu-jing-de-zui-jian-da-ming-ling/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="关于我">
+                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="linux通过pid寻找程序路径的最简单命令">
                         
-                        <span class="card-title">关于我</span>
+                        <span class="card-title">linux通过pid寻找程序路径的最简单命令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -692,9 +839,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-26
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -703,7 +850,14 @@
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/pid/">
+                        <span class="chip bg-color">pid</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -711,16 +865,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/about/index.html">
+                <a href="/2022/01/26/arm-jia-gou-an-zhuang-kubernetes-ji-qun/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="关于我">
+                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/14.jpg" class="responsive-img" alt="ARM架构安装Kubernetes集群">
                         
-                        <span class="card-title">关于我</span>
+                        <span class="card-title">ARM架构安装Kubernetes集群</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -731,7 +885,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-26
                             </span>
                         <span class="publish-author">
                             
@@ -741,7 +895,14 @@
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Kubernetes/">
+                        <span class="chip bg-color">Kubernetes</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>

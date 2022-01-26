@@ -6,7 +6,7 @@
   <link href="https://f10sec.github.io/atom.xml" rel="self"/>
   
   <link href="https://f10sec.github.io/"/>
-  <updated>2022-01-26T02:08:25.378Z</updated>
+  <updated>2022-01-26T09:24:15.871Z</updated>
   <id>https://f10sec.github.io/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux通过pid寻找程序路径的最简单命令</title>
+    <link href="https://f10sec.github.io/2022/01/26/xun-zhao-cheng-xu-lu-jing-de-zui-jian-da-ming-ling/"/>
+    <id>https://f10sec.github.io/2022/01/26/xun-zhao-cheng-xu-lu-jing-de-zui-jian-da-ming-ling/</id>
+    <published>2022-01-26T09:21:38.000Z</published>
+    <updated>2022-01-26T09:24:15.871Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在linux实际操作命令中，查看pid的方式有很多种，通过pid找程序路径的方式也有好几个，但是可能大家都忽略的一个很简单也是很实用的命令：pwdx.&lt;/p&gt;
+&lt;p&gt;1、使用netstat来查看端口8081的pid为8003&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+    <category term="pid" scheme="https://f10sec.github.io/tags/pid/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安全审计工具Auditd的简单使用</title>
+    <link href="https://f10sec.github.io/2022/01/26/an-quan-shen-ji-gong-ju-auditd-de-jian-dan-shi-yong/"/>
+    <id>https://f10sec.github.io/2022/01/26/an-quan-shen-ji-gong-ju-auditd-de-jian-dan-shi-yong/</id>
+    <published>2022-01-26T08:13:05.000Z</published>
+    <updated>2022-01-26T09:27:40.020Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;auditd概述&quot;&gt;&lt;a href=&quot;#auditd概述&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="安全审计工具 Auditd" scheme="https://f10sec.github.io/tags/%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7-Auditd/"/>
+    
+  </entry>
   
   <entry>
     <title>ARM架构安装Kubernetes集群</title>
