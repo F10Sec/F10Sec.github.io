@@ -6,7 +6,7 @@
   <link href="https://f10sec.github.io/atom.xml" rel="self"/>
   
   <link href="https://f10sec.github.io/"/>
-  <updated>2022-01-26T09:24:15.871Z</updated>
+  <updated>2022-02-03T07:35:27.729Z</updated>
   <id>https://f10sec.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>KubeKey部署KubeSphere</title>
+    <link href="https://f10sec.github.io/2022/02/03/kubekeyb-bu-shu-kubesphere/"/>
+    <id>https://f10sec.github.io/2022/02/03/kubekeyb-bu-shu-kubesphere/</id>
+    <published>2022-02-03T07:34:09.000Z</published>
+    <updated>2022-02-03T07:35:27.729Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;从 v3.0.0 开始，&lt;a href=&quot;https://kubesphere.io/&quot;&gt;KubeSphere&lt;/a&gt; 将基于 ansible 的安装程序更改为使用 Go 语言开发的名为 KubeKey 的新安装程序。使用</summary>
+        
+      
+    
+    
+    
+    
+    <category term="KubeKey  KubeSphere" scheme="https://f10sec.github.io/tags/KubeKey-KubeSphere/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ELK部署实践</title>
+    <link href="https://f10sec.github.io/2022/01/27/elk-bu-shu-shi-jian/"/>
+    <id>https://f10sec.github.io/2022/01/27/elk-bu-shu-shi-jian/</id>
+    <published>2022-01-27T06:45:05.000Z</published>
+    <updated>2022-01-27T08:32:33.120Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;ELK是三个开源软件的缩写，分别表示：Elasticsearch , Logstash, Kibana ,</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ELK" scheme="https://f10sec.github.io/tags/ELK/"/>
+    
+  </entry>
   
   <entry>
     <title>linux通过pid寻找程序路径的最简单命令</title>
