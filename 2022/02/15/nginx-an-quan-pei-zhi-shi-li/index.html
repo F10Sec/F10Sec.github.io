@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ELK部署实践, JAVA、Web安全、代码审计、免杀">
+    <meta name="keywords" content="Nginx安全配置示例, JAVA、Web安全、代码审计、免杀">
     <meta name="description" content="逆风的方向更适合飞翔">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ELK部署实践 | F10Sec</title>
+    <title>Nginx安全配置示例 | F10Sec</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/libs/awesome/css/all.css">
@@ -408,7 +408,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ELK部署实践</h1>
+                    <h1 class="description center-align post-title">Nginx安全配置示例</h1>
                 </div>
             </div>
         </div>
@@ -524,8 +524,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ELK/">
-                                <span class="chip bg-color">ELK</span>
+                            <a href="/tags/Nginx/">
+                                <span class="chip bg-color">Nginx</span>
                             </a>
                         
                     </div>
@@ -540,28 +540,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-27
+                    2022-02-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-27
+                    2022-02-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    313
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
 
@@ -589,159 +589,65 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>ELK是三个开源软件的缩写，分别表示：Elasticsearch , Logstash, Kibana , 它们都是开源软件。新增了一个FileBeat，它是一个轻量级的日志收集处理工具(Agent)，Filebeat占用资源少，适合于在各个服务器上搜集日志后传输给Logstash，官方也推荐此工具。</p>
-<p>Elasticsearch是个开源分布式搜索引擎，提供搜集、分析、存储数据三大功能。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。</p>
-<p>Logstash 主要是用来日志的搜集、分析、过滤日志的工具，支持大量的数据获取方式。一般工作方式为c/s架构，client端安装在需要收集日志的主机上，server端负责将收到的各节点日志进行过滤、修改等操作在一并发往elasticsearch上去。</p>
-<p>Kibana 也是一个开源和免费的工具，Kibana可以为 Logstash 和 ElasticSearch 提供的日志分析友好的 Web 界面，可以帮助汇总、分析和搜索重要数据日志。</p>
-<p>Filebeat隶属于Beats。目前Beats包含四种工具：</p>
-<ul>
-<li>Packetbeat（搜集网络流量数据）</li>
-<li>Topbeat（搜集系统、进程和文件系统级别的 CPU 和内存使用情况等数据）</li>
-<li>Filebeat（搜集文件数据）</li>
-<li>Winlogbeat（搜集 Windows 事件日志数据）</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201271446112.svg" alt="img"></p>
-<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><h2 id="机器准备"><a href="#机器准备" class="headerlink" title="机器准备"></a>机器准备</h2><p>在本地部署一台虚拟机，操作系统使用Centos7.9；</p>
-<h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://www.elastic.co/downloads">https://www.elastic.co/downloads</a><br>下载如图三个：</p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201271449887.png" alt="image-20220127144909391"></p>
-<h2 id="安装目录准备"><a href="#安装目录准备" class="headerlink" title="安装目录准备"></a>安装目录准备</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> -p /data/soft<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202202150949131.png" alt="nginxconfig"></p>
+<h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><p>Ubuntu官方源里有nginx的稳定版，我这里选择最新版进行安装</p>
+<p><a target="_blank" rel="noopener" href="http://nginx.org/en/linux_packages.html#Ubuntu">官方指南</a></p>
+<h5 id="添加源"><a href="#添加源" class="headerlink" title="添加源"></a>添加源</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"deb [arch=amd64 ] http://nginx.org/packages/mainline/ubuntu <span class="token variable"><span class="token variable">`</span>lsb_release -cs<span class="token variable">`</span></span> nginx"</span> <span class="token punctuation">\</span>
+    <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">tee</span> /etc/apt/sources.list.d/nginx.list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h1 id="部署配置"><a href="#部署配置" class="headerlink" title="部署配置"></a>部署配置</h1><h2 id="elasticsearch-部署配置"><a href="#elasticsearch-部署配置" class="headerlink" title="elasticsearch 部署配置"></a>elasticsearch 部署配置</h2><h3 id="安装-JDK"><a href="#安装-JDK" class="headerlink" title="安装 JDK"></a>安装 JDK</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">yum <span class="token function">install</span> java -y<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="导入签名密钥"><a href="#导入签名密钥" class="headerlink" title="导入签名密钥"></a>导入签名密钥</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -fsSL https://nginx.org/keys/nginx_signing.key <span class="token operator">|</span> <span class="token function">sudo</span> apt-key <span class="token function">add</span> -<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>检验</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">java -version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>出现如下就说明 jdk 安装成功</p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201271511871.png" alt="image-20220127151101804"></p>
-<h3 id="部署elasticsearch"><a href="#部署elasticsearch" class="headerlink" title="部署elasticsearch"></a>部署elasticsearch</h3><p><strong>将压缩包解压至安装目录</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 解压</span>
-<span class="token function">tar</span> -zxvf elasticsearch-7.16.3-linux-aarch64.tar.gz -C /data/soft/
-<span class="token builtin class-name">cd</span> /data/soft
-<span class="token comment"># 重命名</span>
-<span class="token function">mv</span> elasticsearch-7.16.3/ elasticsearch<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.loli.net/2020/03/13/COdYMJzj3PZDm7w.png" alt="img"></p>
+<h3 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h3><p>推荐使用digitalocean的nginx在线配置生成工具；</p>
+<p><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tools/nginx">链接</a> <a target="_blank" rel="noopener" href="https://github.com/digitalocean/nginxconfig.io">源码</a></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202202150941417.png" alt="image-20220215094117781"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202202150942901.png" alt="image-20220215094220141"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202202150942399.png" alt="image-20220215094243843"></p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202202150943451.png" alt="image-20220215094308855"></p>
+<p>按顺序填写完需求后，下载配置文件至vps，解压即可，也可自行复制粘贴</p>
+<p>Nginx全局配置文件为/etc/nginx/nginx.conf，为了防止错误修改全局文件，我选择修改/etc/nginx/conf.d文件夹里的子项目配置文件default.conf</p>
+<p>配置SSL和网站路径</p>
+<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">server</span></span><span class="token punctuation">&#123;</span>
+    <span class="token directive"><span class="token keyword">listen</span> <span class="token number">443</span></span><span class="token punctuation">;</span> <span class="token comment">#监听443端口</span>
+    <span class="token directive"><span class="token keyword">server_name</span> xxxx.com</span><span class="token punctuation">;</span> <span class="token comment">#配置域名</span>
+    <span class="token directive"><span class="token keyword">ssl</span> <span class="token boolean">on</span></span><span class="token punctuation">;</span> <span class="token comment">#开启SSL</span>
+    <span class="token directive"><span class="token keyword">ssl_certificate</span> domain.cert</span><span class="token punctuation">;</span> <span class="token comment">#证书</span>
+    <span class="token directive"><span class="token keyword">ssl_certificate_key</span> private.key</span><span class="token punctuation">;</span> <span class="token comment">#私钥</span>
+    <span class="token directive"><span class="token keyword">location</span> /</span> <span class="token punctuation">&#123;</span>
+        <span class="token directive"><span class="token keyword">root</span>  /home/git/blog</span><span class="token punctuation">;</span> <span class="token comment">#网站路径</span>
+        <span class="token directive"><span class="token keyword">index</span>  index.html index.htm</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>  
+    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201271515471.png" alt="image-20220127151526115"></p>
-<p><strong>修改配置文件</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 进入文件夹</span>
-<span class="token builtin class-name">cd</span> /data/soft/elasticsearch
-<span class="token comment"># 修改配置文件</span>
-<span class="token function">vim</span> config/elasticsearch.yml
+<p>配置HTTP跳转至HTTPS</p>
+<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">server</span></span> <span class="token punctuation">&#123;</span>
+    <span class="token directive"><span class="token keyword">listen</span> <span class="token number">80</span></span><span class="token punctuation">;</span> <span class="token comment">#监听443端口</span>
+    <span class="token directive"><span class="token keyword">server_name</span> xxxx.com</span><span class="token punctuation">;</span> <span class="token comment">#配置域名</span>
+    <span class="token directive"><span class="token keyword">return</span> <span class="token number">301</span> https://<span class="token variable">$server_name</span><span class="token variable">$request_uri</span></span><span class="token punctuation">;</span> <span class="token comment">#跳转</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment"># 修改以下几项：</span>
-node.name: node-1 <span class="token comment"># 设置节点名</span>
-http.port: <span class="token number">9200</span>
-network.host: <span class="token number">0.0</span>.0.0 <span class="token comment"># 允许外部 ip 访问</span>
-cluster.initial_master_nodes: <span class="token punctuation">[</span><span class="token string">"node-1"</span><span class="token punctuation">]</span> <span class="token comment"># 设置集群初始主节点</span>
+<p>防止列目录</p>
+<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">http</span></span> <span class="token punctuation">&#123;</span>
+<span class="token directive"><span class="token keyword">autoindex</span> <span class="token boolean">off</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment"># 修改系统安全配置</span>
-<span class="token function">vim</span> /etc/security/limits.conf
-<span class="token comment"># 添加以下四行</span>
-* soft nofile <span class="token number">65536</span>
-* hard nofile <span class="token number">131072</span>
-* soft nproc <span class="token number">2048</span>
-* hard nproc <span class="token number">4096</span>
+<p>设置响应头里不显示nginx版本号</p>
+<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">http</span></span> <span class="token punctuation">&#123;</span>
+<span class="token directive"><span class="token keyword">server_tokens</span> <span class="token boolean">off</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<span class="token function">vim</span> /etc/sysctl.conf
-<span class="token comment"># 添加下面一行</span>
-vm.max_map_count<span class="token operator">=</span><span class="token number">655360</span>
-<span class="token comment"># 执行命令</span>
-sysctl -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>配置完后检测是否有误</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nginx -t<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201271525076.png" alt="image-20220127151919202"></p>
-<p><strong>新建用户并赋权</strong><br>ES 为了安全考虑不允许使用 root 用户启动，所以需要新建一个普通用户启动程序</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 添加用户 es</span>
-<span class="token function">useradd</span> es
-<span class="token comment"># 设置用户 es 的密码（需要输入两遍密码）</span>
-<span class="token comment"># （如果设置密码过于简单可能会提示 BAD PASSWORD: XXX ，如果是用 root 用户操作可忽略提示继续输入第二遍密码强制设置密码）</span>
-<span class="token function">passwd</span> es
-<span class="token comment"># 将对应文件夹的权限赋予给 es</span>
-<span class="token function">chown</span> -R es:es /data/soft/elasticsearch/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>启动nginx</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">systemctl <span class="token builtin class-name">enable</span> nginx
+systemctl start nginx
+nginx -s reload<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201271521921.png" alt="image-20220127152122836"></p>
-<p>赋权后显示如下则说明成功</p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201271522857.png" alt="image-20220127152224675"></p>
-<p><strong>切换用户启动 Elasticsearch</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 切换用户</span>
-<span class="token function">su</span> es
-<span class="token comment"># 进入安装目录</span>
-<span class="token builtin class-name">cd</span> /data/soft/elasticsearch
-<span class="token comment"># 启动服务（-d 表示后台启动）</span>
-./bin/elasticsearch -d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>验证</strong><br>开放防火墙9200 端口,访问页面如下就说明成功</p>
-<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202201271524156.png" alt="image-20220127152428547"></p>
-<h2 id="Kibana-部署配置"><a href="#Kibana-部署配置" class="headerlink" title="Kibana 部署配置"></a>Kibana 部署配置</h2><h3 id="解压并移动到安装目录"><a href="#解压并移动到安装目录" class="headerlink" title="解压并移动到安装目录"></a>解压并移动到安装目录</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 解压前先退出 es 用户,切换至 root 用户</span>
-<span class="token builtin class-name">exit</span>
-<span class="token comment"># 解压至安装目录</span>
- <span class="token function">tar</span> -zxvf  kibana-7.16.3-linux-aarch64.tar.gz  -C /data/soft/
-<span class="token comment"># 重命名</span>
-<span class="token builtin class-name">cd</span> /data/soft
-<span class="token function">mv</span> kibana-7.16.3-linux-aarch64/ kibana<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /data/soft/kibana
-<span class="token function">vim</span> ./config/kibana.yml
-
-<span class="token comment"># 修改如下</span>
-<span class="token comment"># 服务端口</span>
-server.port: <span class="token number">5601</span>
-<span class="token comment"># 服务器ip  本机</span>
-server.host: <span class="token string">"0.0.0.0"</span>
-<span class="token comment"># Elasticsearch 服务地址</span>
-elasticsearch.hosts: <span class="token punctuation">[</span><span class="token string">"http://localhost:9200"</span><span class="token punctuation">]</span>
-<span class="token comment"># 设置语言为中文</span>
-i18n.locale: <span class="token string">"zh-CN"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="授权并切换用户"><a href="#授权并切换用户" class="headerlink" title="授权并切换用户"></a>授权并切换用户</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 授权</span>
-<span class="token function">chown</span> -R es:es /data/soft/kibana/
-<span class="token comment"># 切换用户</span>
-<span class="token function">su</span> es<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="启动-Kibana"><a href="#启动-Kibana" class="headerlink" title="启动 Kibana"></a>启动 Kibana</h3><p>注意： 启动 Kibana 之前要启动 Elasticsearch</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nohup</span> ./bin/kibana <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="访问验证"><a href="#访问验证" class="headerlink" title="访问验证"></a>访问验证</h3><h2 id="Logstash-部署配置"><a href="#Logstash-部署配置" class="headerlink" title="Logstash 部署配置"></a>Logstash 部署配置</h2><h3 id="解压并移动到指定目录"><a href="#解压并移动到指定目录" class="headerlink" title="解压并移动到指定目录"></a>解压并移动到指定目录</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 退出 es 用户</span>
-<span class="token builtin class-name">exit</span>
-<span class="token comment"># 解压至安装目录</span>
-<span class="token function">tar</span> -zxvf /root/logstash-7.9.3.tar.gz -C /data/soft
-<span class="token comment"># 重命名</span>
-<span class="token builtin class-name">cd</span> /data/soft
-<span class="token function">mv</span> logstash-7.9.3/ logstash<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p>由于国内无法访问默认的gem source，需要将gem source改为国内的源。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> Gemfile
-<span class="token comment"># 将source这一行改成如下所示：</span>
-<span class="token builtin class-name">source</span> <span class="token string">"https://gems.ruby-china.com/"</span>
-<span class="token comment"># 安装</span>
-./bin/logstash-plugin <span class="token function">install</span> logstash-codec-json_lines<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>安装成功如下：</p>
-<h2 id="配置-logstash"><a href="#配置-logstash" class="headerlink" title="配置 logstash"></a>配置 logstash</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /data/soft/logstash/config/logstash-nginx.conf
-
-<span class="token comment">#如下</span>
-input <span class="token punctuation">&#123;</span>
-   <span class="token function">file</span> <span class="token punctuation">&#123;</span>
-        <span class="token builtin class-name">type</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"nginx-access-log"</span>
-        path <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"/var/log/nginx/access_test.log"</span>
-        start_position <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"beginning"</span>
-        stat_interval <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"2"</span>
-        codec <span class="token operator">=</span><span class="token operator">></span> json
-   <span class="token punctuation">&#125;</span>
-
-<span class="token punctuation">&#125;</span>
-filter <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
-output <span class="token punctuation">&#123;</span>
-  elasticsearch <span class="token punctuation">&#123;</span>
-    hosts <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token string">"http://localhost:9200"</span><span class="token punctuation">]</span>
-    <span class="token comment">#index => "%&#123;[@metadata][beat]&#125;-%&#123;[@metadata][version]&#125;-%&#123;+YYYY.MM.dd&#125;"</span>
-    index <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"logstash-nginx-access-log-%&#123;+YYYY.MM.dd&#125;"</span>
-    <span class="token comment">#user => "elastic"</span>
-    <span class="token comment">#password => "changeme"</span>
-  <span class="token punctuation">&#125;</span>
-  stdout <span class="token punctuation">&#123;</span>
-        codec <span class="token operator">=</span><span class="token operator">></span> json_lines
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<hr>
 
                 
             </div>
@@ -768,7 +674,7 @@ output <span class="token punctuation">&#123;</span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://F10Sec.github.io/2022/01/27/elk-bu-shu-shi-jian/">https://F10Sec.github.io/2022/01/27/elk-bu-shu-shi-jian/</a>
+                    <a href="https://F10Sec.github.io/2022/02/15/nginx-an-quan-pei-zhi-shi-li/">https://F10Sec.github.io/2022/02/15/nginx-an-quan-pei-zhi-shi-li/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -806,8 +712,8 @@ output <span class="token punctuation">&#123;</span>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ELK/">
-                                    <span class="chip bg-color">ELK</span>
+                                <a href="/tags/Nginx/">
+                                    <span class="chip bg-color">Nginx</span>
                                 </a>
                             
                         </div>
@@ -851,17 +757,18 @@ output <span class="token punctuation">&#123;</span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/02/03/kubekeyb-bu-shu-kubesphere/">
+                <a href="/2022/02/15/nginx-an-quan-pei-zhi-shi-li/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/22.jpg" class="responsive-img" alt="KubeKey部署KubeSphere">
+                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/5.jpg" class="responsive-img" alt="Nginx安全配置示例">
                         
-                        <span class="card-title">KubeKey部署KubeSphere</span>
+                        <span class="card-title">Nginx安全配置示例</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -871,9 +778,9 @@ output <span class="token punctuation">&#123;</span>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -882,11 +789,12 @@ output <span class="token punctuation">&#123;</span>
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/KubeKey-KubeSphere/">
-                        <span class="chip bg-color">KubeKey  KubeSphere</span>
+                    <a href="/tags/Nginx/">
+                        <span class="chip bg-color">Nginx</span>
                     </a>
                     
                 </div>
@@ -900,13 +808,13 @@ output <span class="token punctuation">&#123;</span>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/26/xun-zhao-cheng-xu-lu-jing-de-zui-jian-da-ming-ling/">
+                <a href="/2022/02/12/macos-xia-de-shen-tou-ce-shi-gong-ju/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/6.jpg" class="responsive-img" alt="linux通过pid寻找程序路径的最简单命令">
+                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/8.jpg" class="responsive-img" alt="MacOS下的渗透测试工具">
                         
-                        <span class="card-title">linux通过pid寻找程序路径的最简单命令</span>
+                        <span class="card-title">MacOS下的渗透测试工具</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -917,7 +825,7 @@ output <span class="token punctuation">&#123;</span>
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-12
                             </span>
                         <span class="publish-author">
                             
@@ -930,8 +838,8 @@ output <span class="token punctuation">&#123;</span>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/pid/">
-                        <span class="chip bg-color">pid</span>
+                    <a href="/tags/Mac-OS-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">Mac OS  渗透测试工具</span>
                     </a>
                     
                 </div>
