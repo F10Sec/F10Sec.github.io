@@ -245,11 +245,13 @@ mark {
 }
 
 .text-color {
-    color: #0f9d58 !important;
+    /* color: #0f9d58 !important; */
+    color: #e375e7;
 }
 
 .white-color {
-    color: #fff;
+    /* color: #fff; */
+    color: rgb(255,0,0);
 }
 
 .progress-bar {

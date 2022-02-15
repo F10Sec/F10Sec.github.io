@@ -165,7 +165,7 @@
           
           <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
           
-          <span>Nginx在线配置生成</span>
+          <span>Nginx配置生成</span>
         </a>
       </li>
       
@@ -303,7 +303,7 @@
 				  
 				   <i class="fa fas fa-film" style="position: absolute;left:28px" ></i>
 			      
-		          <span>Nginx在线配置生成</span>
+		          <span>Nginx配置生成</span>
                   </a>
                 </li>
               
@@ -554,7 +554,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    313
+                    315
                 </div>
                 
 
@@ -592,6 +592,18 @@
                 <p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202202150949131.png" alt="nginxconfig"></p>
 <h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><p>Ubuntu官方源里有nginx的稳定版，我这里选择最新版进行安装</p>
 <p><a target="_blank" rel="noopener" href="http://nginx.org/en/linux_packages.html#Ubuntu">官方指南</a></p>
+<table>
+<thead>
+<tr>
+<th>XM2021010400000010</th>
+<th>LI20211214000603</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h5 id="添加源"><a href="#添加源" class="headerlink" title="添加源"></a>添加源</h5><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"deb [arch=amd64 ] http://nginx.org/packages/mainline/ubuntu <span class="token variable"><span class="token variable">`</span>lsb_release -cs<span class="token variable">`</span></span> nginx"</span> <span class="token punctuation">\</span>
     <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">tee</span> /etc/apt/sources.list.d/nginx.list<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
@@ -1347,6 +1359,13 @@ $(function () {
     
     <script src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/libs/instantpage/instantpage.js" type="module"></script>
     
+
+    <script type="text/javascript"> //只在桌面版网页启用特效 
+    var windowWidth = $(window).width(); 
+    if (windowWidth > 768) { 
+        document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>'); 
+    } 
+    </script>
 
 </body>
 
