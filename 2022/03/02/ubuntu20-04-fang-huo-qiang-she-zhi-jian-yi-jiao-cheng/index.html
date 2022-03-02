@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签, JAVA、Web安全、代码审计、免杀">
+    <meta name="keywords" content="Ubuntu20.04防火墙设置简易教程, JAVA、Web安全、代码审计、免杀">
     <meta name="description" content="逆风的方向更适合飞翔">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>标签 | F10Sec</title>
+    <title>Ubuntu20.04防火墙设置简易教程 | F10Sec</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/libs/awesome/css/all.css">
@@ -441,12 +441,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">标签</h1>
+                    <h1 class="description center-align post-title">Ubuntu20.04防火墙设置简易教程</h1>
                 </div>
             </div>
         </div>
@@ -560,9 +560,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Ubuntu20-04-ufw/">
+                                <span class="chip bg-color">Ubuntu20.04  ufw</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -574,28 +578,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-19
+                    2022-03-02
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-19
+                    2022-03-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    878
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -623,7 +627,61 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p><strong>前言</strong></p>
+<p>  在现在这个网络越发便捷的社会，各种网络勒索病毒层出不穷，即使是Google浏览器也是在不断的更新版本修复漏洞。很多人认为只有Windows系统才容易中病毒，若使用Linux系统就不容易中病毒，经常让自己的电脑裸奔运行，既不装杀毒软件，也不开启防火墙。其实Linux下也是存在中病毒的可能的，只是那些病毒几乎是无法像在Windows系统下一样自动运行的，Linux的特性决定了很多时候都需要你给予root权限软件才能运行，这确实使电脑中病毒的几率大大降低了，但是不管你的Linux系统是ubuntu还是其它发行版本，即使你不安装杀毒软件，防火墙也是必须要开启的，可惜我们很多人的电脑都是关闭了防火墙，今天这篇博客主要教大家怎么开启Ubuntu系统的防火墙，避免电脑重要文件遭到窃取。</p>
+<p><strong>1.安装</strong></p>
+<p>Ubuntu20.04一般都默认安装了UFW（Uncomplicated Firewall），它是一款轻量化的工具，主要用于对输入输出的流量进行监控。如果没有安装，请用下面的命令安装：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">sudo apt install ufw<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>正常情况安装以后应该是默认禁止状态的，输入<code>sudo ufw status verbose</code>命令可以看到如下界面： </p>
+<p><img src="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202203021410019.png" alt="image-20220302141014129"></p>
+<p>这表示防火墙没有开启，下面启用防火墙。</p>
+<p><strong>2.启用</strong></p>
+<p>终端中输入如下命令：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">sudo ufw enable
+sudo ufw <span class="token keyword">default</span> deny<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>运行以上两条命令后，开启了防火墙，并在系统启动时自动开启。再次输入<code>sudo ufw status verbose</code>，可以看到如下界面： </p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202203021410019.png">https://raw.githubusercontent.com/F10Sec/F10Sec.github.blog/main/202203021410019.png</a></p>
+<p>上面的默认配置表示关闭所有外部对本机的访问，但本机访问外部正常，同时我又开启了3690端口，允许外部通过3690端口访问本机，这里说下，SVN默认使用的就是3690端口，这样我就可以从外部通过SVN提交代码到本机了。</p>
+<p><strong>3.开启/禁用</strong></p>
+<p>一般的用户，只需设置如下三条命令：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">sudo apt install ufw
+sudo ufw enable
+sudo ufw <span class="token keyword">default</span> deny<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>就已经足够安全了，如果你需要开放某些服务，再使用<code>sudo ufw allow</code>命令开启，举例如下：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">sudo ufw allow <span class="token operator">|</span> deny <span class="token punctuation">[</span>service<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>打开或关闭某个端口，例如：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">sudo ufw allow <span class="token number">53</span> <span class="token function">允许外部访问53端口</span><span class="token punctuation">(</span>tcp<span class="token operator">/</span>udp<span class="token punctuation">)</span>
+
+sudo ufw allow <span class="token number">3690</span> <span class="token function">允许外部访问3690端口</span><span class="token punctuation">(</span>svn<span class="token punctuation">)</span>
+
+sudo ufw allow from <span class="token number">192.168</span><span class="token number">.1</span><span class="token number">.111</span> 允许此<span class="token constant">IP</span>访问所有的本机端口
+
+sudo ufw allow proto tcp from <span class="token number">192.168</span><span class="token number">.0</span><span class="token number">.0</span><span class="token operator">/</span><span class="token number">24</span> to any port <span class="token number">22</span> 允许指定的<span class="token constant">IP</span>段访问特定端口
+
+sudo ufw <span class="token keyword">delete</span> allow smtp 删除上面建立的某条规则，比如删除svn端口就是 sudo ufw <span class="token keyword">delete</span> allow <span class="token number">3690</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>4.开启/关闭防火墙</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">sudo ufw enable <span class="token operator">|</span> disable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>5.示例</strong></p>
+<p>下面是ufw命令行的一些示例：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">ufw enable<span class="token operator">/</span>disable：打开<span class="token operator">/</span>关闭ufw
+
+ufw status：查看已经定义的ufw规则
+
+ufw <span class="token keyword">default</span> allow<span class="token operator">/</span>deny：外来访问默认允许<span class="token operator">/</span>拒绝
+
+ufw allow<span class="token operator">/</span>deny <span class="token number">20</span>：允许<span class="token operator">/</span>拒绝访问<span class="token number">20</span>端口，<span class="token number">20</span>后可跟<span class="token operator">/</span>tcp或<span class="token operator">/</span>udp，表示tcp或udp封包。
+
+sudo ufw allow proto tcp from <span class="token number">192.168</span><span class="token number">.0</span><span class="token number">.0</span><span class="token operator">/</span><span class="token number">24</span> to any port <span class="token number">22</span>：允许自<span class="token number">192.168</span><span class="token number">.0</span><span class="token number">.0</span><span class="token operator">/</span><span class="token number">24</span>的tcp封包访问本机的<span class="token number">22</span>端口。
+
+ufw <span class="token keyword">delete</span> allow<span class="token operator">/</span>deny <span class="token number">20</span>：删除以前定义的<span class="token string">"允许/拒绝访问20端口"</span>的规则<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
                 
             </div>
             <hr/>
@@ -649,7 +707,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://F10Sec.github.io/tags/index.html">https://F10Sec.github.io/tags/index.html</a>
+                    <a href="https://F10Sec.github.io/2022/03/02/ubuntu20-04-fang-huo-qiang-she-zhi-jian-yi-jiao-cheng/">https://F10Sec.github.io/2022/03/02/ubuntu20-04-fang-huo-qiang-she-zhi-jian-yi-jiao-cheng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -686,7 +744,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/Ubuntu20-04-ufw/">
+                                    <span class="chip bg-color">Ubuntu20.04  ufw</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -733,13 +795,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/tags/index.html">
+                <a href="/2022/03/02/ubuntu20-04-fang-huo-qiang-she-zhi-jian-yi-jiao-cheng/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/15.jpg" class="responsive-img" alt="标签">
+                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/16.jpg" class="responsive-img" alt="Ubuntu20.04防火墙设置简易教程">
                         
-                        <span class="card-title">标签</span>
+                        <span class="card-title">Ubuntu20.04防火墙设置简易教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -750,7 +812,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-02
                             </span>
                         <span class="publish-author">
                             
@@ -762,22 +824,30 @@
                 </div>
 
                 
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Ubuntu20-04-ufw/">
+                        <span class="chip bg-color">Ubuntu20.04  ufw</span>
+                    </a>
+                    
+                </div>
+                
             </div>
         </div>
         
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tags/index.html">
+                <a href="/2022/02/15/nginx-an-quan-pei-zhi-shi-li/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/15.jpg" class="responsive-img" alt="标签">
+                        <img src="https://cdn.jsdelivr.net/gh/F10Sec/F10Sec.github.io/medias/featureimages/5.jpg" class="responsive-img" alt="Nginx安全配置示例">
                         
-                        <span class="card-title">标签</span>
+                        <span class="card-title">Nginx安全配置示例</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -788,7 +858,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-15
                             </span>
                         <span class="publish-author">
                             
@@ -798,7 +868,14 @@
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Nginx/">
+                        <span class="chip bg-color">Nginx</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>

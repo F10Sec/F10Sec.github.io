@@ -6,7 +6,7 @@
   <link href="https://f10sec.github.io/atom.xml" rel="self"/>
   
   <link href="https://f10sec.github.io/"/>
-  <updated>2022-02-15T02:54:32.502Z</updated>
+  <updated>2022-03-02T06:10:32.003Z</updated>
   <id>https://f10sec.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu20.04防火墙设置简易教程</title>
+    <link href="https://f10sec.github.io/2022/03/02/ubuntu20-04-fang-huo-qiang-she-zhi-jian-yi-jiao-cheng/"/>
+    <id>https://f10sec.github.io/2022/03/02/ubuntu20-04-fang-huo-qiang-she-zhi-jian-yi-jiao-cheng/</id>
+    <published>2022-03-02T06:08:38.000Z</published>
+    <updated>2022-03-02T06:10:32.003Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  在现在这个网络越发便捷的社会，各种网络勒索病毒层出不穷，即使是Google浏览器也是在不断的更新版本修复漏洞。很多人认为只有Windows系统才容易中病毒，若使用Linux系统就不容易中病毒，经常让自己的电脑裸奔运行</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Ubuntu20.04  ufw" scheme="https://f10sec.github.io/tags/Ubuntu20-04-ufw/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx安全配置示例</title>
